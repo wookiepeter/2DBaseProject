@@ -16,6 +16,8 @@ namespace GameProject2D
         Vector2f movement { get; set; }
         Vector2f size { get { return sprite.Size; } set { sprite.Size = value; } }
 
+        Vector2f gravity = new Vector2f(0F, 2F);
+
 
         public Player(Vector2f position)
         {
@@ -30,15 +32,21 @@ namespace GameProject2D
 
         public void update(float deltaTime)
         {
-            float speed = deltaTime;
+            Console.WriteLine(deltaTime);
+            float speed = 0.005F;
             
             Vector2f inputMovement = new Vector2f(0F, 0F);
 
-            inputMovement.Y += Keyboard.IsKeyPressed(Keyboard.Key.Down) ? speed : 0F;
-            inputMovement.Y += Keyboard.IsKeyPressed(Keyboard.Key.Up) ? -speed : 0F;
-
+           inputMovement.Y += Keyboard.IsKeyPressed(Keyboard.Key.Down) ? speed : 0F;
+            //inputMovement.Y += Keyboard.IsKeyPressed(Keyboard.Key.Up) ? -speed : 0F;
+          
             inputMovement.X += Keyboard.IsKeyPressed(Keyboard.Key.Left) ? -speed : 0F;
             inputMovement.X += Keyboard.IsKeyPressed(Keyboard.Key.Right) ? speed : 0F;
+
+            if (KeyboardInputManager.IsPressed(Keyboard.Key.Up))
+            {
+                inputMovement.Y -= 200F;
+            }
 
             if(inputMovement.Y != 0F || inputMovement.X != 0F)
             {
@@ -47,13 +55,38 @@ namespace GameProject2D
 
             movement *= (1F - deltaTime * 4F);    // friction
 
+            movement += gravity * deltaTime;
+
             position += movement;
+
+
 
             if(position.X < 0)
             {
                 position -= movement;
+                movement *= Vector2.Left;
+            }
+
+           if (position.Y < 0)
+            {
+                position -= movement;
+                movement *= Vector2.Up;
+            }            
+
+             if (position.Y > Program.win.Size.Y - sprite.Size.Y)
+            {
+                position -= movement;
                 movement *= Vector2.Up;
             }
+
+
+             if (position.X > Program.win.Size.X - sprite.Size.X)
+            {
+                position -= movement;
+                movement *= Vector2.Left;
+            }
+
+
         }
 
         public void draw(RenderWindow win, View view)
