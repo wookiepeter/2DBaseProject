@@ -73,6 +73,15 @@ public struct Vector2
     public float length { get { return (float)System.Math.Sqrt(X * X + Y * Y); } }
     public float lengthSqr { get { return X * X + Y * Y; } }
 
+    public float rotation 
+    { 
+        get    
+        {
+            float cos = (float)Math.Acos(this.normalized.X);
+            return Y > 0F ? cos : 2F * Helper.PI - cos;
+        } 
+    }
+
     public Vector2 normalized 
     { 
         get 

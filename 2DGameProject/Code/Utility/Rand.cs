@@ -35,7 +35,7 @@ public class Rand
         return random.Next(maxValue);
     }
 
-    /// <summary>random number, within Range [minValue, maxValue)</summary>
+    /// <summary>random number, within Range</summary>
     public static int IntValue(int minValue, int maxValue)
     {
         return random.Next(minValue, maxValue);
