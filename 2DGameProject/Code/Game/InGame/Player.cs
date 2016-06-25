@@ -16,7 +16,7 @@ namespace GameProject2D
         Vector2f movement { get; set; }
         //Vector2f size { get { return sprite.Size; } set { sprite.Size = value; } }
 
-        Vector2f gravity = new Vector2f(0F, 2F);
+        Vector2f gravity = new Vector2f(0F, 0.8F);
         bool isJumping = true;
         int index; //Nummerirung der Spieler
 
@@ -43,10 +43,12 @@ namespace GameProject2D
         public void update(float deltaTime)
         {
             //Console.WriteLine(position.Y);
-            float speed = 0.005F;
+            float speed = 500F;
             
             Vector2f inputMovement = new Vector2f(0F, 0F);
 
+            bool startJumping = false;
+             
             //inputMovement.Y += Keyboard.IsKeyPressed(Keyboard.Key.Down) ? 10 : 0F;
             //inputMovement.Y += Keyboard.IsKeyPressed(Keyboard.Key.Up) ? -speed : 0F;
             if (index == 2)
@@ -59,12 +61,7 @@ namespace GameProject2D
                 {
                     isJumping = false;
                 }
-
-                if (!isJumping && KeyboardInputManager.IsPressed(Keyboard.Key.Up))
-                {
-                    inputMovement.Y -= 200F;
-                    isJumping = true;
-                }
+                startJumping = !isJumping && KeyboardInputManager.IsPressed(Keyboard.Key.Up);
             }
             else
             {
@@ -75,24 +72,18 @@ namespace GameProject2D
                 {
                     isJumping = false;
                 }
-
-                if (!isJumping && KeyboardInputManager.IsPressed(Keyboard.Key.W))
-                {
-                    inputMovement.Y -= 200F;
-                    isJumping = true;
-                }
+                startJumping = !isJumping && KeyboardInputManager.IsPressed(Keyboard.Key.W);
             }
-            if (inputMovement.Y != 0F || inputMovement.X != 0F)
+
+            if (startJumping)
             {
-                movement += inputMovement * speed; 
-                    // (float)Math.Sqrt(inputMovement.X * inputMovement.X + inputMovement.Y * inputMovement.Y);
+                movement = new Vector2(inputMovement.X * speed, -400F);
+                isJumping = true;
             }
-
-            movement *= (1F - deltaTime * 4F);    // friction
-   
-            movement += gravity * deltaTime;
-
-            position += movement;
+            else
+                movement = new Vector2(inputMovement.X * speed, movement.Y + gravity.Y * speed * deltaTime);
+            
+            position += movement * deltaTime;
 
 
 

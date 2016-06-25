@@ -68,6 +68,8 @@ namespace GameProject2D
                 debugText.DisplayedString = "fps: " + (1.0F / deltaTime);
                 win.Draw(debugText);
 
+                //System.Threading.Thread.Sleep((1000 / 60) - (int)(deltaTime / 1000F));
+
                 // do the actual drawing
                 win.SetView(view);
                 win.Display();

@@ -4,6 +4,7 @@ public struct Vector2
 {
     public float X;
     public float Y;
+    internal static float down;
 
     public Vector2(float x, float y)
     {
