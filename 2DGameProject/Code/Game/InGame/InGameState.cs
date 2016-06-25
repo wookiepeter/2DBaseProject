@@ -11,6 +11,7 @@ namespace GameProject2D
         Player player2;
         Background background;
         Plant plant;
+        Vector2 collisionPoint;
         
         public InGameState()
         {
@@ -25,7 +26,12 @@ namespace GameProject2D
             player.update(deltaTime);
             player2.update(deltaTime);
             return GameState.InGame;
-            
+
+            //if (DoCollide(p, s, out collisionPoint))
+            {
+
+            }
+
         }
 
         public void Draw(RenderWindow win, View view, float deltaTime)
