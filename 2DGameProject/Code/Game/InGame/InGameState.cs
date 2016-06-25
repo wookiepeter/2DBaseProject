@@ -25,7 +25,7 @@ namespace GameProject2D
             player2.update(deltaTime);
             return GameState.InGame;
 
-           // if (DoCollide(x, x, out collisionPoint))
+            //if (DoCollide(p, s, out collisionPoint))
             {
 
             }
