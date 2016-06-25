@@ -43,9 +43,8 @@ namespace GameProject2D
 
             if (countdown <= 0)
             {
-       
                 countdown = 1.0f;
-                drops.Add(new SweatDrop(new Vector2(Rand.Value(0.5F, Program.win.Size.X-0.5F), -100.0F)));
+                drops.Add(new SweatDrop(new Vector2(Rand.Value(1.0F, Program.win.Size.X-1.0F), -100.0F)));
 
             }
             countdown -= deltaTime;
@@ -63,13 +62,27 @@ namespace GameProject2D
                 {
                     drop.bounceOff(collisionPoint);
                 }
+
                 if (drop.sprite.Position.X < 0 || drop.sprite.Position.X > Program.win.Size.X || drop.sprite.Position.Y > Program.win.Size.Y)
                 {
                     cachedForDelete.Add(drop);
                 }
+
+                for (int i = 0; i < plants.Count; i++)
+                {
+                   foreach(CircleShape cs in plants[i].collider)
+                    {
+                        if (DoCollide(drop.sprite, cs, out collisionPoint))
+                        {
+                            plants[i].getHit();
+                            cachedForDelete.Add(drop);
+                        }
+                    }
+                }
             }
 
-            foreach(SweatDrop drop in cachedForDelete)
+
+            foreach (SweatDrop drop in cachedForDelete)
             {
                 drops.Remove(drop);
             }
