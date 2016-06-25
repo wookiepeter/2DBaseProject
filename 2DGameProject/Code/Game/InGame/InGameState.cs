@@ -25,10 +25,13 @@ namespace GameProject2D
             background = new Background();
             plants = new List<Plant>();
 
-            plants.Add(new Plant(25F));
-            plants.Add(new Plant(200F));
+            plants.Add(new Plant(Rand.Value(Program.win.Size.X*0.03F, Program.win.Size.X*0.43F)));
+            plants.Add(new Plant(Rand.Value(Program.win.Size.X * 0.03F, Program.win.Size.X * 0.43F)));
+            plants.Add(new Plant(Rand.Value((1F - 0.43F) * Program.win.Size.X, Program.win.Size.X * (1F -0.03F))));
+            plants.Add(new Plant(Rand.Value((1F - 0.43F) * Program.win.Size.X, Program.win.Size.X * (1F - 0.03F))));
+            /*plants.Add(new Plant(200F));
             plants.Add(new Plant(550F));
-            plants.Add(new Plant(700F));
+            plants.Add(new Plant(700F));*/
 
             drops = new List<SweatDrop>();
             
