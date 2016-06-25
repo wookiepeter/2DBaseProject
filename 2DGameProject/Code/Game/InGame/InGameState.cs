@@ -138,6 +138,32 @@ namespace GameProject2D
             {
                 plant.update(deltaTime);
             }
+
+            int lifeLeft = 0;
+            int lifeRight = 0;
+
+            for (int i = 0; i < plants.Count; i++)
+            {
+                if(plants[i].variable < Program.win.Size.X * 0.5f)
+                {
+                    lifeLeft += plants[i].Life;
+                }
+                else
+                {
+                    lifeRight += plants[i].Life;
+                }
+            }
+
+            if (lifeRight == 0)
+            {
+                return GameState.MainMenu;
+            }
+
+            if (lifeLeft == 0)
+            {
+                return GameState.MainMenu;
+            }
+
             return GameState.InGame;
         }
 
