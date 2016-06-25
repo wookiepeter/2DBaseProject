@@ -27,11 +27,54 @@ namespace GameProject2D
             Plant randomPlant = new Plant(-100);
             plants = new List<Plant>();
 
-            plants.Add(new Plant(Rand.Value(Program.win.Size.X*0.03F, Program.win.Size.X*0.43F - randomPlant.SpriteWidth)));
+            int plantCount = 5;
+            List<float> left = new List<float>();
+            List<float> right = new List<float>();
+            for (int i = 0; i < plantCount; i++)
+            {
+                bool canPlace = true;
+                float place = (Rand.Value(Program.win.Size.X * 0.03F, Program.win.Size.X * 0.43F - randomPlant.SpriteWidth));
+                foreach (float l in left)
+                {
+                    if (Math.Abs(place - l) < randomPlant.SpriteWidth)
+                    {
+                        canPlace = false;
+                        break;
+                    }
+                }
+                if (canPlace)
+                {
+                    plants.Add(new Plant(place));
+                    left.Add(place);
+                }
+                else i--;
+            }
+
+            for (int j = 0; j < plantCount; j++)
+            {
+                bool canPlace = true;
+                float place = Rand.Value((1F - 0.43F) * Program.win.Size.X, Program.win.Size.X * (1F - 0.03F) - randomPlant.SpriteWidth);
+                foreach (float r in right)
+                {
+                    if (Math.Abs(place - r) < randomPlant.SpriteWidth)
+                    {
+                        canPlace = false;
+                        break;
+                    }
+                }
+                if (canPlace)
+                {
+                    plants.Add(new Plant(place));
+                    right.Add(place);
+                }
+                else j--;
+            }
+
+           /* plants.Add(new Plant(Rand.Value(Program.win.Size.X*0.03F, Program.win.Size.X*0.43F - randomPlant.SpriteWidth)));
             plants.Add(new Plant(Rand.Value(Program.win.Size.X * 0.03F, Program.win.Size.X * 0.43F - randomPlant.SpriteWidth)));
             plants.Add(new Plant(Rand.Value((1F - 0.43F) * Program.win.Size.X, Program.win.Size.X * (1F -0.03F) - randomPlant.SpriteWidth)));
             plants.Add(new Plant(Rand.Value((1F - 0.43F) * Program.win.Size.X, Program.win.Size.X * (1F - 0.03F) - randomPlant.SpriteWidth)));
-            /*plants.Add(new Plant(200F));
+            plants.Add(new Plant(200F));
             plants.Add(new Plant(550F));
             plants.Add(new Plant(700F));*/
 

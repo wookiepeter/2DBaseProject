@@ -21,7 +21,7 @@ using SFML.Graphics;
         public void Update(float deltaTime)
         {
             move += (gravity * deltaTime)/2;
-            position += move/2;
+            position += move;
             
         }
 
