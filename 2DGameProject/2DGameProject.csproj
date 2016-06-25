@@ -59,6 +59,7 @@
     <Compile Include="Code\Game\IGameState.cs" />
     <Compile Include="Code\Game\InGame\Background.cs" />
     <Compile Include="Code\Game\InGame\CircleCollision.cs" />
+    <Compile Include="Code\Game\InGame\SweatDrops.cs" />
     <Compile Include="Code\Game\InGame\InGameState.cs" />
     <Compile Include="Code\Game\InGame\Player.cs" />
     <Compile Include="Code\Game\MainMenu\MainMenuState.cs" />
