@@ -16,8 +16,9 @@ public class AssetManager
 
     static void LoadTextures()
     {
-        textures.Add(TextureName.WhitePixel, new Texture("Assets/Textures/pixel.png"));
-        textures.Add(TextureName.MainMenuBackground, new Texture("Assets/Textures/Background.png"));
+        textures.Add(TextureName.WhitePixel, new Texture("Textures/pixel.png"));
+        textures.Add(TextureName.MainMenuBackground, new Texture("Textures/MainMenu_Background.jpg"));
+        textures.Add(TextureName.Crop, new Texture("Textures/Plant1.png"));
 
     }
 
@@ -25,5 +26,6 @@ public class AssetManager
     {
         WhitePixel,
         MainMenuBackground,
+        Crop,
     }
 }

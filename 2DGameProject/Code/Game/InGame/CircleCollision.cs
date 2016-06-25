@@ -1,41 +1,29 @@
 ﻿using System;
-using SFML;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using SFML.Graphics;
-using SFML.Window;
 
-namespace GameProject2D
+namespace _2DGameProject
 {
-    class InGameState : IGameState
+    public class CircleCollision
     {
-        Player player;
-        Player player2;
-        Background background;
-        
-        public InGameState()
+        CircleShape sprite;
+        Vector2 position { get { return sprite.Position; } set { sprite.Position = value; } }
+
+        public CircleCollision(Vector2 vector)
         {
-            player = new Player(new Vector2f(50F, 10F),1);
-            player2 = new Player(new Vector2f(680F, 10F),2); //neuer Spieler erstellt
-            background = new Background();
+            this.sprite = new CircleShape();
+            this.position = position;
+
+            Vector2 collisionPoint;
+            if(DoCollide(sprite, sprite, out collisionPoint))
+            {
+                
+            }
         }
 
-        public GameState Update(float deltaTime)
-        {
-            player.update(deltaTime);
-            player2.update(deltaTime);
-            return GameState.InGame;
-            
-        }
-
-        public void Draw(RenderWindow win, View view, float deltaTime)
-        {
-            player.draw(win, view);
-            player2.draw(win, view);
-            background.Draw(win, view);
-        }
-
-        public void DrawGUI(GUI gui, float deltaTime)
-        {
-        }
         private bool DoCollide(CircleShape a, CircleShape b, out Vector2 collisionPoint)
         {
             Vector2 deltaA = b.Position - a.Position; //Streckenlänge berechnen
@@ -56,5 +44,6 @@ namespace GameProject2D
                 return false;
             }
         }
+        
     }
 }

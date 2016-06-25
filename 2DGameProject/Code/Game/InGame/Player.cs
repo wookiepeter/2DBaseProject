@@ -20,6 +20,7 @@ namespace GameProject2D
         bool isJumping = true;
         int index; //Nummerirung der Spieler
 
+        
 
         public Player(Vector2f position, int index) //Konstruktor
         {
@@ -50,7 +51,7 @@ namespace GameProject2D
             //inputMovement.Y += Keyboard.IsKeyPressed(Keyboard.Key.Up) ? -speed : 0F;
             if (index == 2)
             {
-
+            
                 inputMovement.X += Keyboard.IsKeyPressed(Keyboard.Key.Left) ? -1 : 0F;
                 inputMovement.X += Keyboard.IsKeyPressed(Keyboard.Key.Right) ? 1 : 0F;
 

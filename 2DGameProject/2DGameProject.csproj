@@ -58,6 +58,7 @@
     <Compile Include="Code\Game\GameState.cs" />
     <Compile Include="Code\Game\IGameState.cs" />
     <Compile Include="Code\Game\InGame\Background.cs" />
+    <Compile Include="Code\Game\InGame\CircleCollision.cs" />
     <Compile Include="Code\Game\InGame\InGameState.cs" />
     <Compile Include="Code\Game\InGame\Player.cs" />
     <Compile Include="Code\Game\MainMenu\MainMenuState.cs" />
@@ -99,6 +100,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Textures\pixel.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Textures\Plant1.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
