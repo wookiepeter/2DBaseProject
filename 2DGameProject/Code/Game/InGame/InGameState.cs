@@ -11,31 +11,36 @@ namespace GameProject2D
         Player player2;
         Background background;
         Vector2 collisionPoint;
+        SweatDrops drops;
+
         
         public InGameState()
         {
             player = new Player(new Vector2f(50F, 10F),1);
             player2 = new Player(new Vector2f(680F, 10F),2); //neuer Spieler erstellt
             background = new Background();
+            drops = new SweatDrops(new Vector2(100F, -100));
         }
 
         public GameState Update(float deltaTime)
         {
             player.update(deltaTime);
             player2.update(deltaTime);
-            return GameState.InGame;
+            drops.Update(deltaTime);
 
-            //if (DoCollide(p, s, out collisionPoint))
+            if (DoCollide(player.sprite, drops.sprite, out collisionPoint))
             {
-
+                drops.bounceOff(collisionPoint);               
             }
 
+            return GameState.InGame;
         }
 
         public void Draw(RenderWindow win, View view, float deltaTime)
         {
             player.draw(win, view);
             player2.draw(win, view);
+            drops.draw(win, view);
             background.Draw(win, view);
         }
 
