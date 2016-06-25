@@ -10,12 +10,14 @@ namespace GameProject2D
         Player player;
         Player player2;
         Background background;
+        Plant plant;
         
         public InGameState()
         {
             player = new Player(new Vector2f(50F, 10F),1);
             player2 = new Player(new Vector2f(680F, 10F),2); //neuer Spieler erstellt
             background = new Background();
+            plant = new Plant();
         }
 
         public GameState Update(float deltaTime)
@@ -28,9 +30,10 @@ namespace GameProject2D
 
         public void Draw(RenderWindow win, View view, float deltaTime)
         {
+            background.Draw(win, view);
+            plant.Draw(win, view);
             player.draw(win, view);
             player2.draw(win, view);
-            background.Draw(win, view);
         }
 
         public void DrawGUI(GUI gui, float deltaTime)
