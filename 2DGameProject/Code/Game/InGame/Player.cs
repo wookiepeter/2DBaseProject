@@ -42,7 +42,7 @@ namespace GameProject2D
 
         public void update(float deltaTime)
         {
-            Console.WriteLine(position.Y);
+            //Console.WriteLine(position.Y);
             float speed = 0.005F;
             
             Vector2f inputMovement = new Vector2f(0F, 0F);
