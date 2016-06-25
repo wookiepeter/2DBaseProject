@@ -11,24 +11,32 @@ namespace GameProject2D
 {
     public class Player
     {
-        RectangleShape sprite;
+        CircleShape sprite;
         Vector2f position { get { return sprite.Position; } set { sprite.Position = value; } }
         Vector2f movement { get; set; }
-        Vector2f size { get { return sprite.Size; } set { sprite.Size = value; } }
+        //Vector2f size { get { return sprite.Size; } set { sprite.Size = value; } }
 
         Vector2f gravity = new Vector2f(0F, 2F);
         bool isJumping = true;
+        int index; //Nummerirung der Spieler
 
 
-        public Player(Vector2f position)
+        public Player(Vector2f position, int index) //Konstruktor
         {
-            this.sprite = new RectangleShape(new Vector2f(1F, 1F));
-            this.sprite.FillColor = Color.Black;
+            this.sprite = new CircleShape(30.0F);
+            if (index == 2) { 
+            this.sprite.FillColor = new Color(150, 0, 2);
+            }
+            else
+            {
+                this.sprite.FillColor = new Color(0, 50, 255);
+            }
 
             this.position = position;
             this.movement = new Vector2f(0F, 0F);
+            this.index = index; 
             
-            this.size = new Vector2f(100F, 100F);
+            //this.size = new Vector2f(50F, 50F);
         }
 
         public void update(float deltaTime)
@@ -38,24 +46,42 @@ namespace GameProject2D
             
             Vector2f inputMovement = new Vector2f(0F, 0F);
 
-           //inputMovement.Y += Keyboard.IsKeyPressed(Keyboard.Key.Down) ? 10 : 0F;
+            //inputMovement.Y += Keyboard.IsKeyPressed(Keyboard.Key.Down) ? 10 : 0F;
             //inputMovement.Y += Keyboard.IsKeyPressed(Keyboard.Key.Up) ? -speed : 0F;
-          
-            inputMovement.X += Keyboard.IsKeyPressed(Keyboard.Key.Left) ? -1 : 0F;
-            inputMovement.X += Keyboard.IsKeyPressed(Keyboard.Key.Right) ? 1 : 0F;
-
-            if ((sprite.Position.Y + sprite.Size.Y)>Program.win.Size.Y-1)
+            if (index == 2)
             {
-                isJumping = false;
-            }
 
-            if (!isJumping && KeyboardInputManager.IsPressed(Keyboard.Key.Up))
+                inputMovement.X += Keyboard.IsKeyPressed(Keyboard.Key.Left) ? -1 : 0F;
+                inputMovement.X += Keyboard.IsKeyPressed(Keyboard.Key.Right) ? 1 : 0F;
+
+                if ((sprite.Position.Y + sprite.Radius * 2) > Program.win.Size.Y*0.8F - 1)
+                {
+                    isJumping = false;
+                }
+
+                if (!isJumping && KeyboardInputManager.IsPressed(Keyboard.Key.Up))
+                {
+                    inputMovement.Y -= 200F;
+                    isJumping = true;
+                }
+            }
+            else
             {
-                inputMovement.Y -= 200F;
-                isJumping = true;
-            }
+                inputMovement.X += Keyboard.IsKeyPressed(Keyboard.Key.A) ? -1 : 0F;
+                inputMovement.X += Keyboard.IsKeyPressed(Keyboard.Key.D) ? 1 : 0F;
 
-            if(inputMovement.Y != 0F || inputMovement.X != 0F)
+                if ((sprite.Position.Y + sprite.Radius * 2) > Program.win.Size.Y*0.8F - 1)
+                {
+                    isJumping = false;
+                }
+
+                if (!isJumping && KeyboardInputManager.IsPressed(Keyboard.Key.W))
+                {
+                    inputMovement.Y -= 200F;
+                    isJumping = true;
+                }
+            }
+            if (inputMovement.Y != 0F || inputMovement.X != 0F)
             {
                 movement += inputMovement * speed; 
                     // (float)Math.Sqrt(inputMovement.X * inputMovement.X + inputMovement.Y * inputMovement.Y);
@@ -81,17 +107,27 @@ namespace GameProject2D
                // movement *= Vector2.Up;
             }            
 
-             if (position.Y > Program.win.Size.Y - sprite.Size.Y)
+             if (position.Y > Program.win.Size.Y*0.8F - sprite.Radius*2)
             {
-                position = new Vector2f (position.X, Program.win.Size.Y - sprite.Size.Y);
+                position = new Vector2f (position.X, Program.win.Size.Y*0.8F - sprite.Radius*2);
                 //movement *= Vector2.Up;
             }
 
-
-             if (position.X > Program.win.Size.X - sprite.Size.X)
+            if (index == 1)
             {
-                position = new Vector2f (Program.win.Size.X - sprite.Size.X, position.Y);
-                //movement *= Vector2.Left;
+                if (position.X > Program.win.Size.X - sprite.Radius * 2)
+                {
+                    position = new Vector2f(Program.win.Size.X - sprite.Radius * 2, position.Y);
+                    //movement *= Vector2.Left;
+                }
+            }
+            if (index == 2)
+            {
+                if (position.X > Program.win.Size.X  - sprite.Radius * 2)
+                {
+                    position = new Vector2f(Program.win.Size.X - sprite.Radius * 2, position.Y);
+                    //movement *= Vector2.Left;
+                }
             }
 
 
