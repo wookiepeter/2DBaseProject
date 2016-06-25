@@ -11,11 +11,14 @@ namespace GameProject2D
         Sprite sprite;
         float SpriteWidth { get { return sprite.Texture.Size.X * sprite.Scale.X; } }
         float SpriteHeigh { get { return sprite.Texture.Size.Y * sprite.Scale.Y; } }
-        public Plant()
+
+        public Plant(float x)
         {
             AssetManager.GetTexture(AssetManager.TextureName.Crop); //greift auf die Texture zu
             sprite = new Sprite(AssetManager.GetTexture(AssetManager.TextureName.Crop));
-            this.sprite.Position = new Vector2f(50F, (Program.win.Size.Y * 0.8F)- SpriteHeigh);
+            this.sprite.Position = new Vector2f(x, (Program.win.Size.Y * 0.7F)- SpriteHeigh);
+            sprite.Scale = new Vector2f(0.5F, 1F);
+            
         }
 
     

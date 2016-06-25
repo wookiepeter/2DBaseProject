@@ -2,6 +2,7 @@
 using SFML;
 using SFML.Graphics;
 using SFML.Window;
+using System.Collections.Generic;
 
 namespace GameProject2D
 {
@@ -10,7 +11,7 @@ namespace GameProject2D
         Player player;
         Player player2;
         Background background;
-        Plant plant;
+        List<Plant> plants;
         Vector2 collisionPoint;
         
         public InGameState()
@@ -18,7 +19,12 @@ namespace GameProject2D
             player = new Player(new Vector2f(50F, 10F),1);
             player2 = new Player(new Vector2f(680F, 10F),2); //neuer Spieler erstellt
             background = new Background();
-            plant = new Plant();
+            plants = new List<Plant>();
+
+            plants.Add(new Plant(25F));
+            plants.Add(new Plant(200F));
+            plants.Add(new Plant(550F));
+            plants.Add(new Plant(700F));
         }
 
         public GameState Update(float deltaTime)
@@ -37,7 +43,10 @@ namespace GameProject2D
         public void Draw(RenderWindow win, View view, float deltaTime)
         {
             background.Draw(win, view);
-            plant.Draw(win, view);
+            foreach (Plant t in plants) //t - variable
+            {
+                t.Draw(win, view);
+            }
             player.draw(win, view);
             player2.draw(win, view);
         }

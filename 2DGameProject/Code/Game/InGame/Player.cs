@@ -55,7 +55,7 @@ namespace GameProject2D
                 inputMovement.X += Keyboard.IsKeyPressed(Keyboard.Key.Left) ? -1 : 0F;
                 inputMovement.X += Keyboard.IsKeyPressed(Keyboard.Key.Right) ? 1 : 0F;
 
-                if ((sprite.Position.Y + sprite.Radius * 2) > Program.win.Size.Y*0.8F - 1)
+                if ((sprite.Position.Y + sprite.Radius * 2) > Program.win.Size.Y*0.7F - 1)
                 {
                     isJumping = false;
                 }
@@ -71,7 +71,7 @@ namespace GameProject2D
                 inputMovement.X += Keyboard.IsKeyPressed(Keyboard.Key.A) ? -1 : 0F;
                 inputMovement.X += Keyboard.IsKeyPressed(Keyboard.Key.D) ? 1 : 0F;
 
-                if ((sprite.Position.Y + sprite.Radius * 2) > Program.win.Size.Y*0.8F - 1)
+                if ((sprite.Position.Y + sprite.Radius * 2) > Program.win.Size.Y*0.7F - 1)
                 {
                     isJumping = false;
                 }
@@ -104,9 +104,9 @@ namespace GameProject2D
                // movement *= Vector2.Up;
             }            
 
-             if (position.Y > Program.win.Size.Y*0.8F - sprite.Radius*2)
+             if (position.Y > Program.win.Size.Y*0.7F - sprite.Radius*2)
             {
-                position = new Vector2f (position.X, Program.win.Size.Y*0.8F - sprite.Radius*2);
+                position = new Vector2f (position.X, Program.win.Size.Y*0.7F - sprite.Radius*2);
                 //movement *= Vector2.Up;
             }
 
