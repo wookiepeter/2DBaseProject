@@ -53,26 +53,52 @@ namespace GameProject2D
             //inputMovement.Y += Keyboard.IsKeyPressed(Keyboard.Key.Up) ? -speed : 0F;
             if (index == 2)
             {
-            
-                inputMovement.X += Keyboard.IsKeyPressed(Keyboard.Key.Left) ? -1 : 0F;
-                inputMovement.X += Keyboard.IsKeyPressed(Keyboard.Key.Right) ? 1 : 0F;
-
-                if ((sprite.Position.Y + sprite.Radius * 2) > Program.win.Size.Y*0.7F - 1)
+                if (GamePadInputManager.IsConnected(1))
                 {
-                    isJumping = false;
+                    inputMovement.X = GamePadInputManager.GetLeftStick(1).X;
+                    if ((sprite.Position.Y + sprite.Radius * 2) > Program.win.Size.Y * 0.7F - 1)
+                    {
+                        isJumping = false;
+                    }
+                    startJumping = !isJumping && GamePadInputManager.IsPressed(GamePadButton.A, 0);
                 }
-                startJumping = !isJumping && KeyboardInputManager.IsPressed(Keyboard.Key.Up);
+
+                else
+                {
+                    inputMovement.X += Keyboard.IsKeyPressed(Keyboard.Key.Left) ? -1 : 0F;
+                    inputMovement.X += Keyboard.IsKeyPressed(Keyboard.Key.Right) ? 1 : 0F;
+
+                    if ((sprite.Position.Y + sprite.Radius * 2) > Program.win.Size.Y * 0.7F - 1)
+                    {
+                        isJumping = false;
+                    }
+                    startJumping = !isJumping && KeyboardInputManager.IsPressed(Keyboard.Key.Up);
+                }
             }
             else
             {
-                inputMovement.X += Keyboard.IsKeyPressed(Keyboard.Key.A) ? -1 : 0F;
-                inputMovement.X += Keyboard.IsKeyPressed(Keyboard.Key.D) ? 1 : 0F;
 
-                if ((sprite.Position.Y + sprite.Radius * 2) > Program.win.Size.Y*0.7F - 1)
+                if (GamePadInputManager.IsConnected(0))
                 {
-                    isJumping = false;
+                    inputMovement.X = GamePadInputManager.GetLeftStick(0).X;
+                    if ((sprite.Position.Y + sprite.Radius * 2) > Program.win.Size.Y * 0.7F - 1)
+                    {
+                        isJumping = false;
+                    }
+                    startJumping = !isJumping && GamePadInputManager.IsPressed(GamePadButton.A, 0);
                 }
-                startJumping = !isJumping && KeyboardInputManager.IsPressed(Keyboard.Key.W);
+
+                else
+                {
+                    inputMovement.X += Keyboard.IsKeyPressed(Keyboard.Key.A) ? -1 : 0F;
+                    inputMovement.X += Keyboard.IsKeyPressed(Keyboard.Key.D) ? 1 : 0F;
+
+                    if ((sprite.Position.Y + sprite.Radius * 2) > Program.win.Size.Y * 0.7F - 1)
+                    {
+                        isJumping = false;
+                    }
+                    startJumping = !isJumping && KeyboardInputManager.IsPressed(Keyboard.Key.W);
+                }
             }
 
             if (startJumping)

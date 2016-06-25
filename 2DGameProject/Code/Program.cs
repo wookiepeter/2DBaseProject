@@ -47,6 +47,7 @@ namespace GameProject2D
             while (running && win.IsOpen())
             {
                 KeyboardInputManager.Update();
+                GamePadInputManager.Update();
 
                 // update GameTime
                 GameTime.Update();
