@@ -20,8 +20,8 @@ namespace GameProject2D
         static View view;
         static GUI gui;
 
-        static Music menuMusic = new Music("");
-        static Music inGameMusic = new Music("");
+        static Music menuMusic = new Music("Sounds/Music/MainMenu.wav");
+        static Music inGameMusic = new Music("Sounds/Music/InGame.wav");
 
         static void Main(string[] args)
         {
