@@ -112,27 +112,27 @@ namespace GameProject2D
 
             if (index == 1)
             {
-                if (position.X > (Program.win.Size.X -500F) - sprite.Radius * 2)
+                if (position.X > (Program.win.Size.X *0.43F) - sprite.Radius*1.7F)
                 {
-                    position = new Vector2f((Program.win.Size.X-500F) - sprite.Radius *2, position.Y);
+                    position = new Vector2f((Program.win.Size.X *0.43F) - sprite.Radius*1.7F, position.Y);
                     //movement *= Vector2.Left;
                 }
-                if (position.X < 0)
+                if (position.X < Program.win.Size.X * 0.03F - sprite.Radius/3)
                 {
-                    position = new Vector2f(0, position.Y);
+                    position = new Vector2f(Program.win.Size.X * 0.03F - sprite.Radius/3, position.Y);
                     //movement *= Vector2.Left;
                 }
             }
             if (index == 2)
             {
-                if (position.X < (Program.win.Size.X -270F)  - sprite.Radius)
+                if (position.X < ((1F - 0.43F) * Program.win.Size.X)  - sprite.Radius/2.5F)
                 {
-                    position = new Vector2f((Program.win.Size.X -270F) - sprite.Radius, position.Y);
+                    position = new Vector2f(((1F - 0.43F) * Program.win.Size.X) - sprite.Radius/2.5F, position.Y);
                     //movement *= Vector2.Left;
                 }
-                if (position.X > Program.win.Size.X - sprite.Radius*2)
+                if (position.X > (1F-0.03F)*Program.win.Size.X - sprite.Radius*1.7F)
                 {
-                    position = new Vector2f(Program.win.Size.X - sprite.Radius*2, position.Y);
+                    position = new Vector2f((1F - 0.03F)*Program.win.Size.X - sprite.Radius*1.7F, position.Y);
                     //movement *= Vector2.Left;
                 }
             }
