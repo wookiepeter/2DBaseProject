@@ -96,11 +96,7 @@ namespace GameProject2D
 
 
 
-            if(position.X < 0)
-            {
-                position = new Vector2f(0,position.Y);
-                //movement *= Vector2.Left;
-            }
+            
 
            if (position.Y < 0)
             {
@@ -116,17 +112,27 @@ namespace GameProject2D
 
             if (index == 1)
             {
-                if (position.X > Program.win.Size.X - sprite.Radius * 2)
+                if (position.X > (Program.win.Size.X -500F) - sprite.Radius * 2)
                 {
-                    position = new Vector2f(Program.win.Size.X - sprite.Radius * 2, position.Y);
+                    position = new Vector2f((Program.win.Size.X-500F) - sprite.Radius *2, position.Y);
+                    //movement *= Vector2.Left;
+                }
+                if (position.X < 0)
+                {
+                    position = new Vector2f(0, position.Y);
                     //movement *= Vector2.Left;
                 }
             }
             if (index == 2)
             {
-                if (position.X > Program.win.Size.X  - sprite.Radius * 2)
+                if (position.X < (Program.win.Size.X -270F)  - sprite.Radius)
                 {
-                    position = new Vector2f(Program.win.Size.X - sprite.Radius * 2, position.Y);
+                    position = new Vector2f((Program.win.Size.X -270F) - sprite.Radius, position.Y);
+                    //movement *= Vector2.Left;
+                }
+                if (position.X > Program.win.Size.X - sprite.Radius*2)
+                {
+                    position = new Vector2f(Program.win.Size.X - sprite.Radius*2, position.Y);
                     //movement *= Vector2.Left;
                 }
             }
