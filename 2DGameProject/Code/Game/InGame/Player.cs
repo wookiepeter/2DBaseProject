@@ -11,7 +11,7 @@ namespace GameProject2D
 {
     public class Player
     {
-        CircleShape sprite;
+        public CircleShape sprite;
         Vector2f position { get { return sprite.Position; } set { sprite.Position = value; } }
         Vector2f movement { get; set; }
         //Vector2f size { get { return sprite.Size; } set { sprite.Size = value; } }

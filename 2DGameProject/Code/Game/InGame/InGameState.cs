@@ -13,6 +13,8 @@ namespace GameProject2D
         Background background;
         List<Plant> plants;
         Vector2 collisionPoint;
+        SweatDrops drops;
+
         
         public InGameState()
         {
@@ -25,19 +27,21 @@ namespace GameProject2D
             plants.Add(new Plant(200F));
             plants.Add(new Plant(550F));
             plants.Add(new Plant(700F));
+            drops = new SweatDrops(new Vector2(100F, -100));
         }
 
         public GameState Update(float deltaTime)
         {
             player.update(deltaTime);
             player2.update(deltaTime);
-            return GameState.InGame;
+            drops.Update(deltaTime);
 
-            //if (DoCollide(p, s, out collisionPoint))
+            if (DoCollide(player.sprite, drops.sprite, out collisionPoint))
             {
-
+                drops.bounceOff(collisionPoint);               
             }
 
+            return GameState.InGame;
         }
 
         public void Draw(RenderWindow win, View view, float deltaTime)
@@ -49,6 +53,8 @@ namespace GameProject2D
             }
             player.draw(win, view);
             player2.draw(win, view);
+            drops.draw(win, view);
+            background.Draw(win, view);
         }
 
         public void DrawGUI(GUI gui, float deltaTime)
