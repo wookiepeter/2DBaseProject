@@ -1,6 +1,7 @@
 ﻿using SFML.Graphics;
 using SFML.Window;
 using System;
+using SFML.Audio;
 
 namespace GameProject2D
 {
@@ -18,6 +19,9 @@ namespace GameProject2D
         static readonly Vector2 windowSize = new Vector2(1024, 768);
         static View view;
         static GUI gui;
+
+        static Music menuMusic = new Music("");
+        static Music inGameMusic = new Music("");
 
         static void Main(string[] args)
         {
@@ -90,10 +94,16 @@ namespace GameProject2D
 
                 case GameState.MainMenu:
                     state = new MainMenuState();
+                    inGameMusic.Stop();
+                    menuMusic.Loop = true;
+                    menuMusic.Play();
                     break;
 
                 case GameState.InGame:
                     state = new InGameState();
+                    menuMusic.Stop();
+                    inGameMusic.Loop = true;
+                    inGameMusic.Play();
                     break;
 
                 case GameState.Reset:
