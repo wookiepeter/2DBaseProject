@@ -11,7 +11,7 @@ namespace GameProject2D
         
         Sprite sprite;
         public List<CircleShape> collider = new List<CircleShape>();
-        float SpriteWidth { get { return sprite.Texture.Size.X * sprite.Scale.X; } }
+        public float SpriteWidth { get { return sprite.Texture.Size.X * sprite.Scale.X; } }
         float SpriteHeigh { get { return sprite.Texture.Size.Y * sprite.Scale.Y; } }
         float Life;
 
@@ -37,10 +37,14 @@ namespace GameProject2D
        
         public void update (float deltaTime)
         {
-            for (int i = 0; i < cachedForDelete.Count; i++)
+           foreach (CircleShape cl in cachedForDelete)
             {
-                cachedForDelete.RemoveAt(i);
+                collider.Remove(cl);
             }
+                /* for (int i = 0; i < cachedForDelete.Count; i++)
+            {
+                collider.RemoveAt(i);
+            }*/
         }
 
        

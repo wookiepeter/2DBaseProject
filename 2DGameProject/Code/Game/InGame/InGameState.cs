@@ -23,12 +23,14 @@ namespace GameProject2D
             player = new Player(new Vector2f(50F, 10F),1);
             player2 = new Player(new Vector2f(680F, 10F),2); //neuer Spieler erstellt
             background = new Background();
+
+            Plant randomPlant = new Plant(-100);
             plants = new List<Plant>();
 
-            plants.Add(new Plant(Rand.Value(Program.win.Size.X*0.03F, Program.win.Size.X*0.43F)));
-            plants.Add(new Plant(Rand.Value(Program.win.Size.X * 0.03F, Program.win.Size.X * 0.43F)));
-            plants.Add(new Plant(Rand.Value((1F - 0.43F) * Program.win.Size.X, Program.win.Size.X * (1F -0.03F))));
-            plants.Add(new Plant(Rand.Value((1F - 0.43F) * Program.win.Size.X, Program.win.Size.X * (1F - 0.03F))));
+            plants.Add(new Plant(Rand.Value(Program.win.Size.X*0.03F, Program.win.Size.X*0.43F - randomPlant.SpriteWidth)));
+            plants.Add(new Plant(Rand.Value(Program.win.Size.X * 0.03F, Program.win.Size.X * 0.43F - randomPlant.SpriteWidth)));
+            plants.Add(new Plant(Rand.Value((1F - 0.43F) * Program.win.Size.X, Program.win.Size.X * (1F -0.03F) - randomPlant.SpriteWidth)));
+            plants.Add(new Plant(Rand.Value((1F - 0.43F) * Program.win.Size.X, Program.win.Size.X * (1F - 0.03F) - randomPlant.SpriteWidth)));
             /*plants.Add(new Plant(200F));
             plants.Add(new Plant(550F));
             plants.Add(new Plant(700F));*/
@@ -89,7 +91,10 @@ namespace GameProject2D
             {
                 drops.Remove(drop);
             }
-
+            foreach(Plant plant in plants)
+            {
+                plant.update(deltaTime);
+            }
             return GameState.InGame;
         }
 
