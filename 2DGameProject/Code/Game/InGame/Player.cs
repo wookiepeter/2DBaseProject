@@ -16,7 +16,7 @@ namespace GameProject2D
         Vector2f movement { get; set; }
         //Vector2f size { get { return sprite.Size; } set { sprite.Size = value; } }
 
-        Vector2f gravity = new Vector2f(0F, 0.8F);
+        Vector2f gravity = new Vector2f(0F, 2.2F);
         bool isJumping = true;
         int index; //Nummerirung der Spieler
 
@@ -24,7 +24,7 @@ namespace GameProject2D
 
         public Player(Vector2f position, int index) //Konstruktor
         {
-            this.sprite = new CircleShape(30.0F);
+            this.sprite = new CircleShape(40.0F);
             if (index == 2) { 
             this.sprite.FillColor = new Color(150, 0, 2);
             }
@@ -43,7 +43,7 @@ namespace GameProject2D
         public void update(float deltaTime)
         {
             //Console.WriteLine(position.Y);
-            float speed = 500F;
+            float speed = 650F;
             
             Vector2f inputMovement = new Vector2f(0F, 0F);
 
@@ -53,31 +53,57 @@ namespace GameProject2D
             //inputMovement.Y += Keyboard.IsKeyPressed(Keyboard.Key.Up) ? -speed : 0F;
             if (index == 2)
             {
-            
-                inputMovement.X += Keyboard.IsKeyPressed(Keyboard.Key.Left) ? -1 : 0F;
-                inputMovement.X += Keyboard.IsKeyPressed(Keyboard.Key.Right) ? 1 : 0F;
-
-                if ((sprite.Position.Y + sprite.Radius * 2) > Program.win.Size.Y*0.7F - 1)
+                if (GamePadInputManager.IsConnected(1))
                 {
-                    isJumping = false;
+                    inputMovement.X = GamePadInputManager.GetLeftStick(1).X;
+                    if ((sprite.Position.Y + sprite.Radius * 2) > Program.win.Size.Y * 0.7F - 1)
+                    {
+                        isJumping = false;
+                    }
+                    startJumping = !isJumping && GamePadInputManager.IsPressed(GamePadButton.A, 0);
                 }
-                startJumping = !isJumping && KeyboardInputManager.IsPressed(Keyboard.Key.Up);
+
+                else
+                {
+                    inputMovement.X += Keyboard.IsKeyPressed(Keyboard.Key.Left) ? -1 : 0F;
+                    inputMovement.X += Keyboard.IsKeyPressed(Keyboard.Key.Right) ? 1 : 0F;
+
+                    if ((sprite.Position.Y + sprite.Radius * 2) > Program.win.Size.Y * 0.7F - 1)
+                    {
+                        isJumping = false;
+                    }
+                    startJumping = !isJumping && KeyboardInputManager.IsPressed(Keyboard.Key.Up);
+                }
             }
             else
             {
-                inputMovement.X += Keyboard.IsKeyPressed(Keyboard.Key.A) ? -1 : 0F;
-                inputMovement.X += Keyboard.IsKeyPressed(Keyboard.Key.D) ? 1 : 0F;
 
-                if ((sprite.Position.Y + sprite.Radius * 2) > Program.win.Size.Y*0.7F - 1)
+                if (GamePadInputManager.IsConnected(0))
                 {
-                    isJumping = false;
+                    inputMovement.X = GamePadInputManager.GetLeftStick(0).X;
+                    if ((sprite.Position.Y + sprite.Radius * 2) > Program.win.Size.Y * 0.7F - 1)
+                    {
+                        isJumping = false;
+                    }
+                    startJumping = !isJumping && GamePadInputManager.IsPressed(GamePadButton.A, 0);
                 }
-                startJumping = !isJumping && KeyboardInputManager.IsPressed(Keyboard.Key.W);
+
+                else
+                {
+                    inputMovement.X += Keyboard.IsKeyPressed(Keyboard.Key.A) ? -1 : 0F;
+                    inputMovement.X += Keyboard.IsKeyPressed(Keyboard.Key.D) ? 1 : 0F;
+
+                    if ((sprite.Position.Y + sprite.Radius * 2) > Program.win.Size.Y * 0.7F - 1)
+                    {
+                        isJumping = false;
+                    }
+                    startJumping = !isJumping && KeyboardInputManager.IsPressed(Keyboard.Key.W);
+                }
             }
 
             if (startJumping)
             {
-                movement = new Vector2(inputMovement.X * speed, -400F);
+                movement = new Vector2(inputMovement.X * speed, -650F);
                 isJumping = true;
             }
             else

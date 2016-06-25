@@ -55,6 +55,7 @@
   <ItemGroup>
     <Compile Include="Code\AnimatedSprite.cs" />
     <Compile Include="Code\AssetManager.cs" />
+    <Compile Include="Code\GamePadInputManager.cs" />
     <Compile Include="Code\Game\GameState.cs" />
     <Compile Include="Code\Game\IGameState.cs" />
     <Compile Include="Code\Game\InGame\Plant.cs" />
