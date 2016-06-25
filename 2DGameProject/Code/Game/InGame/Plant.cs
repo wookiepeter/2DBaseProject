@@ -10,10 +10,12 @@ namespace GameProject2D
     {
         
         Sprite sprite;
-        List<CircleShape> collider = new List<CircleShape>();
-        float SpriteWidth { get { return sprite.Texture.Size.X * sprite.Scale.X; } }
+        public List<CircleShape> collider = new List<CircleShape>();
+        public float SpriteWidth { get { return sprite.Texture.Size.X * sprite.Scale.X; } }
         float SpriteHeigh { get { return sprite.Texture.Size.Y * sprite.Scale.Y; } }
         float Life;
+
+        List<CircleShape> cachedForDelete = new List<CircleShape>();
 
         public Plant(float x)
         {
@@ -29,13 +31,31 @@ namespace GameProject2D
                 this.collider[i].Position = new Vector2f(x, (Program.win.Size.Y * 0.7F) - collider[i].Radius * ((i+1)*2));
             }
          
-            this.Life = 100;
+            this.Life = 4;
             
         }
+       
+        public void update (float deltaTime)
+        {
+           foreach (CircleShape cl in cachedForDelete)
+            {
+                collider.Remove(cl);
+            }
+                /* for (int i = 0; i < cachedForDelete.Count; i++)
+            {
+                collider.RemoveAt(i);
+            }*/
+        }
 
-    
+       
+        public void getHit()
+        {
+            Life -= 1;
+            cachedForDelete.Add(collider[collider.Count-1]);            
+        }
 
-        public void Draw(RenderWindow win, View view)
+        
+    public void Draw(RenderWindow win, View view)
         {
             win.Draw(sprite);
             foreach (CircleShape t in collider) //t - variable
@@ -47,5 +67,6 @@ namespace GameProject2D
         public void DrawGUI(GUI gui, float deltaTime)
         {
         }
+
     }
 }

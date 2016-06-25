@@ -23,12 +23,17 @@ namespace GameProject2D
             player = new Player(new Vector2f(50F, 10F),1);
             player2 = new Player(new Vector2f(680F, 10F),2); //neuer Spieler erstellt
             background = new Background();
+
+            Plant randomPlant = new Plant(-100);
             plants = new List<Plant>();
 
-            plants.Add(new Plant(25F));
-            plants.Add(new Plant(200F));
+            plants.Add(new Plant(Rand.Value(Program.win.Size.X*0.03F, Program.win.Size.X*0.43F - randomPlant.SpriteWidth)));
+            plants.Add(new Plant(Rand.Value(Program.win.Size.X * 0.03F, Program.win.Size.X * 0.43F - randomPlant.SpriteWidth)));
+            plants.Add(new Plant(Rand.Value((1F - 0.43F) * Program.win.Size.X, Program.win.Size.X * (1F -0.03F) - randomPlant.SpriteWidth)));
+            plants.Add(new Plant(Rand.Value((1F - 0.43F) * Program.win.Size.X, Program.win.Size.X * (1F - 0.03F) - randomPlant.SpriteWidth)));
+            /*plants.Add(new Plant(200F));
             plants.Add(new Plant(550F));
-            plants.Add(new Plant(700F));
+            plants.Add(new Plant(700F));*/
 
             drops = new List<SweatDrop>();
             
@@ -43,9 +48,8 @@ namespace GameProject2D
 
             if (countdown <= 0)
             {
-       
                 countdown = 1.0f;
-                drops.Add(new SweatDrop(new Vector2(Rand.Value(0.5F, Program.win.Size.X-0.5F), -100.0F)));
+                drops.Add(new SweatDrop(new Vector2(Rand.Value(1.0F, Program.win.Size.X-1.0F), -100.0F)));
 
             }
             countdown -= deltaTime;
@@ -63,17 +67,34 @@ namespace GameProject2D
                 {
                     drop.bounceOff(collisionPoint);
                 }
+
                 if (drop.sprite.Position.X < 0 || drop.sprite.Position.X > Program.win.Size.X || drop.sprite.Position.Y > Program.win.Size.Y)
                 {
                     cachedForDelete.Add(drop);
                 }
+
+                for (int i = 0; i < plants.Count; i++)
+                {
+                   foreach(CircleShape cs in plants[i].collider)
+                    {
+                        if (DoCollide(drop.sprite, cs, out collisionPoint))
+                        {
+                            plants[i].getHit();
+                            cachedForDelete.Add(drop);
+                        }
+                    }
+                }
             }
 
-            foreach(SweatDrop drop in cachedForDelete)
+
+            foreach (SweatDrop drop in cachedForDelete)
             {
                 drops.Remove(drop);
             }
-
+            foreach(Plant plant in plants)
+            {
+                plant.update(deltaTime);
+            }
             return GameState.InGame;
         }
 
