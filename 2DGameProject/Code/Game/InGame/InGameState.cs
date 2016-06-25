@@ -87,7 +87,7 @@ namespace GameProject2D
         {
             player.update(deltaTime);
             player2.update(deltaTime);
-            Console.WriteLine(countdown);
+            //Console.WriteLine(GamePadInputManager.GetLeftStick(0).Y);
 
             if (countdown <= 0)
             {
