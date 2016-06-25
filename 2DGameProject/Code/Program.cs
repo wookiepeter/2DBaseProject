@@ -60,7 +60,7 @@ namespace GameProject2D
                 }
 
                 // gather drawStuff from State
-                win.Clear(new Color(100, 149, 237));    //cornflowerblue ftw!!! 1337
+                win.Clear(new Color(155, 124, 247));    //cornflowerblue ftw!!! 1337
                 state.Draw(win, view, deltaTime);
                 state.DrawGUI(gui, deltaTime);
 
