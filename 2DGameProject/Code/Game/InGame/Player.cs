@@ -19,6 +19,7 @@ namespace GameProject2D
         Vector2f gravity = new Vector2f(0F, 2F);
         bool isJumping = true;
 
+        
 
         public Player(Vector2f position)
         {
@@ -43,7 +44,7 @@ namespace GameProject2D
           
             inputMovement.X += Keyboard.IsKeyPressed(Keyboard.Key.Left) ? -1 : 0F;
             inputMovement.X += Keyboard.IsKeyPressed(Keyboard.Key.Right) ? 1 : 0F;
-
+            
             if ((sprite.Position.Y + sprite.Radius*2)>Program.win.Size.Y-1)
             {
                 isJumping = false;
