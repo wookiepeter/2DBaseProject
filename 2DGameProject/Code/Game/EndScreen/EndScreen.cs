@@ -9,7 +9,7 @@ namespace GameProject2D
 
         public EndScreenState()
         {
-            background = new Sprite(new Texture("Textures/MainMenu_Background.jpg"));
+            background = new Sprite(AssetManager.GetTexture(AssetManager.TextureName.EndScreen));
         }
 
         public GameState Update(float deltaTime)
