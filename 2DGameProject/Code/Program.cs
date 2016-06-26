@@ -78,7 +78,7 @@ namespace GameProject2D
                 if (InGameState.winnerOne && currentGameState == GameState.EndScreen)
                 {
                     winnerOneText.DisplayedString = "The Winner is Player One!";
-                    winnerOneText.Position = new Vector2(200.0f, 200.0f);
+                    winnerOneText.Position = new Vector2(320.0f, 320.0f);
                     Program.win.Draw(winnerOneText);
                 }
                 else if (!InGameState.winnerOne && currentGameState == GameState.EndScreen)
