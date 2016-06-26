@@ -60,7 +60,7 @@ namespace GameProject2D
                     {
                         isJumping = false;
                     }
-                    startJumping = !isJumping && GamePadInputManager.IsPressed(GamePadButton.A, 0);
+                    startJumping = !isJumping && GamePadInputManager.IsPressed(GamePadButton.A, 1);
                 }
 
                 else

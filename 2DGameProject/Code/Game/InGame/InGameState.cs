@@ -156,12 +156,12 @@ namespace GameProject2D
 
             if (lifeRight == 0)
             {
-                return GameState.MainMenu;
+                return GameState.EndScreen;
             }
 
             if (lifeLeft == 0)
             {
-                return GameState.MainMenu;
+                return GameState.EndScreen;
             }
 
             return GameState.InGame;
