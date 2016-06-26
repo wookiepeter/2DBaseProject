@@ -7,24 +7,35 @@ namespace GameProject2D
 {
     class Background
     {
-        RectangleShape island;
-        RectangleShape island2;
-      
+        RectangleShape rect;
+        RectangleShape rect2;
+        Sprite island;
+        Sprite island2;
 
         public Background()
         {
-            this.island = new RectangleShape(new Vector2f (Program.win.Size.X*0.4F,35F));
-            this.island.Position = new Vector2f(Program.win.Size.X * 0.03F, Program.win.Size.Y * 0.7F);
-            this.island.FillColor = Color.Black;
-            this.island2 = new RectangleShape(new Vector2f(Program.win.Size.X * 0.4F, 35F));
-            this.island2.Position = new Vector2f(((1F-0.43F)*Program.win.Size.X), Program.win.Size.Y * 0.7F);
-            this.island2.FillColor = Color.Black;
+            this.rect = new RectangleShape(new Vector2f (Program.win.Size.X*0.4F,35F));
+            this.rect.Position = new Vector2f(Program.win.Size.X * 0.03F, Program.win.Size.Y * 0.7F);
+            this.rect.FillColor = Color.Black;
+            this.rect2 = new RectangleShape(new Vector2f(Program.win.Size.X * 0.4F, 35F));
+            this.rect2.Position = new Vector2f(((1F-0.43F)*Program.win.Size.X), Program.win.Size.Y * 0.7F);
+            this.rect2.FillColor = Color.Black;
+
+            island = new Sprite(AssetManager.GetTexture(AssetManager.TextureName.Island));
+            island.Position = new Vector2f(Program.win.Size.X * 0.03F, Program.win.Size.Y * 0.67F);
+
+
+            island2 = new Sprite(AssetManager.GetTexture(AssetManager.TextureName.Island));
+            island2.Position = new Vector2f(((1F - 0.43F) * Program.win.Size.X), Program.win.Size.Y * 0.67F);
         }
 
     
 
         public void Draw(RenderWindow win, View view)
         {
+            //win.Draw(rect);
+            //win.Draw(rect2);
+
             win.Draw(island);
             win.Draw(island2);
         }
