@@ -26,7 +26,7 @@ namespace GameProject2D
         static void Main(string[] args)
         {
             // initialize window and view
-            win = new RenderWindow(new VideoMode((uint)windowSize.X, (uint)windowSize.Y), "Hadoken!!!");
+            win = new RenderWindow(new VideoMode((uint)windowSize.X, (uint)windowSize.Y), "ßauer Regen");
             view = new View();
             ResetView();
             gui = new GUI(win, view);
