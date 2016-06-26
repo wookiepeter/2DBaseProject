@@ -24,12 +24,12 @@ namespace GameProject2D
             AssetManager.GetTexture(AssetManager.TextureName.Crop); //greift auf die Texture zu
             sprite = new Sprite(AssetManager.GetTexture(AssetManager.TextureName.Crop));
             this.sprite.Position = new Vector2f(x, (Program.win.Size.Y * 0.7F)- SpriteHeigh);
-            sprite.Scale = new Vector2f(0.5F, 1F);
+            sprite.Scale = new Vector2f(0.6F, 1F);
             this.Life = 4;
             for (int i = 0; i < Life; i++)
             {
                 collider.Add(new CircleShape(SpriteWidth / 2));
-                this.collider[i].FillColor = Color.Yellow;
+                this.collider[i].FillColor = Color.Green;
                 this.collider[i].Position = new Vector2f(x, (Program.win.Size.Y * 0.7F) - collider[i].Radius * ((i+1)*2));
             }
          
