@@ -177,8 +177,8 @@ namespace GameProject2D
             {
                 t.Draw(win, view);
             }
-            player.draw(win, view);
-            player2.draw(win, view);
+            player.draw(win, view, deltaTime);
+            player2.draw(win, view, deltaTime);
             foreach (SweatDrop drop in drops)
             {
                 drop.draw(win, view);

@@ -53,17 +53,44 @@ namespace GameProject2D
         public void getHit()
         {
             Life -= 1;
-            cachedForDelete.Add(collider[collider.Count-1]);            
+            cachedForDelete.Add(collider[collider.Count - 1]);
+
+            ChangeTexture();
         }
 
-        
-    public void Draw(RenderWindow win, View view)
+        private void ChangeTexture()
+        {
+            switch (Life)
+            {
+                case 4:
+                    sprite.Texture = AssetManager.GetTexture(AssetManager.TextureName.Crop4);
+                    break;
+
+                case 3:
+                    sprite.Texture = AssetManager.GetTexture(AssetManager.TextureName.Crop3);
+                    break;
+
+                case 2:
+                    sprite.Texture = AssetManager.GetTexture(AssetManager.TextureName.Crop2);
+                    break;
+
+                case 1:
+                    sprite.Texture = AssetManager.GetTexture(AssetManager.TextureName.Crop);
+                    break;
+
+                default:
+                    sprite.Texture = AssetManager.GetTexture(AssetManager.TextureName.WhitePixel);
+                    break;
+            }
+        }
+
+        public void Draw(RenderWindow win, View view)
         {
             win.Draw(sprite);
-            foreach (CircleShape t in collider) //t - variable
+            /* foreach (CircleShape t in collider) //t - variable
             {
                win.Draw(t);
-            }
+            }*/
         }
 
         public void DrawGUI(GUI gui, float deltaTime)
