@@ -13,5 +13,6 @@ namespace GameProject2D
         MainMenu,
         InGame,
         Reset,
+        EndScreen,
     }
 }

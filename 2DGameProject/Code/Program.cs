@@ -111,6 +111,13 @@ namespace GameProject2D
                     prevGameState = GameState.Reset;
                     HandleNewGameState();
                     break;
+
+                case GameState.EndScreen:
+                    state = new EndScreenState();
+                    inGameMusic.Stop();
+                    menuMusic.Loop = true;
+                    menuMusic.Play();
+                    break;
             }
 
             prevGameState = currentGameState;

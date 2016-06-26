@@ -64,6 +64,7 @@
     <Compile Include="Code\Game\InGame\SweatDrop.cs" />
     <Compile Include="Code\Game\InGame\InGameState.cs" />
     <Compile Include="Code\Game\InGame\Player.cs" />
+    <Compile Include="Code\Game\EndScreen\EndScreen.cs" />
     <Compile Include="Code\Game\MainMenu\MainMenuState.cs" />
     <Compile Include="Code\GUI.cs" />
     <Compile Include="Code\Utility\GameTime.cs" />
