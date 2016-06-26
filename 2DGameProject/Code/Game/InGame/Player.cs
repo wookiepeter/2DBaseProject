@@ -25,7 +25,9 @@ namespace GameProject2D
 
         public Player(Vector2f position, int index) //Konstruktor
         {
-            sprite = new AnimatedSprite(AssetManager.GetTexture(AssetManager.TextureName.Farmer1Running),0.1f,62, new Vector2 (131,125));
+            Vector2 FrameSize = new Vector2(124, 125);
+            sprite = new AnimatedSprite(AssetManager.GetTexture(AssetManager.TextureName.Farmer1Running),0.01F,64, FrameSize);
+            sprite.Origin = FrameSize * 0.5F;
             this.circle = new CircleShape(40.0F);
             if (index == 2) { 
             this.circle.FillColor = new Color(150, 0, 2);
@@ -159,8 +161,14 @@ namespace GameProject2D
 
         }
 
-        public void draw(RenderWindow win, View view)
+        public void draw(RenderWindow win, View view, float deltaTime)
         {
+            sprite.UpdateFrame(deltaTime);
+            sprite.Position = (Vector2) position + Vector2.One * circle.Radius;
+            //Hardcoded values !!!! Caution!!!
+            sprite.Position = sprite.Position - new Vector2f(-8,10);
+
+            //win.Draw(circle);
             win.Draw(sprite);
         }
     }
