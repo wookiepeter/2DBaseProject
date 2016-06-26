@@ -17,7 +17,7 @@ namespace GameProject2D
         Vector2f movement { get; set; }
         //Vector2f size { get { return sprite.Size; } set { sprite.Size = value; } }
 
-        Vector2f gravity = new Vector2f(0F, 2.2F);
+        Vector2f gravity = new Vector2f(0F, 2.2F); //Gravitation
         bool isJumping = true;
         int index; //Nummerirung der Spieler
 
@@ -47,7 +47,7 @@ namespace GameProject2D
         public void update(float deltaTime)
         {
             //Console.WriteLine(position.Y);
-            float speed = 650F;
+            float speed = 650F; //Geschwindigkeit
             
             Vector2f inputMovement = new Vector2f(0F, 0F);
 
@@ -107,7 +107,7 @@ namespace GameProject2D
 
             if (startJumping)
             {
-                movement = new Vector2(inputMovement.X * speed, -750F);
+                movement = new Vector2(inputMovement.X * speed, -750F); //Springhoehe
                 isJumping = true;
             }
             else
