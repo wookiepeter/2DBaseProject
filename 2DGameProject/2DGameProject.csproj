@@ -129,7 +129,7 @@
     <Content Include="Textures\farmer02_running.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Textures\MainMenu_Background.jpg">
+    <Content Include="Textures\MainMenu_Background.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Textures\pixel.png">
