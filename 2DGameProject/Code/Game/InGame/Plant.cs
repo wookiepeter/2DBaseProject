@@ -55,6 +55,8 @@ namespace GameProject2D
             Life -= 1;
             cachedForDelete.Add(collider[collider.Count - 1]);
 
+            Program.splashSound.Play();
+
             ChangeTexture();
         }
 
@@ -86,7 +88,8 @@ namespace GameProject2D
 
         public void Draw(RenderWindow win, View view)
         {
-            win.Draw(sprite);
+            if(Life > 0)
+                win.Draw(sprite);
             /* foreach (CircleShape t in collider) //t - variable
             {
                win.Draw(t);

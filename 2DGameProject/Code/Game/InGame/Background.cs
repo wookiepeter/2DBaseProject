@@ -11,6 +11,7 @@ namespace GameProject2D
         RectangleShape rect2;
         Sprite island;
         Sprite island2;
+        Sprite background;
 
         public Background()
         {
@@ -23,10 +24,11 @@ namespace GameProject2D
 
             island = new Sprite(AssetManager.GetTexture(AssetManager.TextureName.Island));
             island.Position = new Vector2f(Program.win.Size.X * 0.03F, Program.win.Size.Y * 0.67F);
-
-
+            
             island2 = new Sprite(AssetManager.GetTexture(AssetManager.TextureName.Island));
             island2.Position = new Vector2f(((1F - 0.43F) * Program.win.Size.X), Program.win.Size.Y * 0.67F);
+
+            background = new Sprite(AssetManager.GetTexture(AssetManager.TextureName.ingameBackGround));
         }
 
     
@@ -35,6 +37,8 @@ namespace GameProject2D
         {
             //win.Draw(rect);
             //win.Draw(rect2);
+
+            win.Draw(background);
 
             win.Draw(island);
             win.Draw(island2);

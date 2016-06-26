@@ -24,7 +24,8 @@ public class AssetManager
         textures.Add(TextureName.Crop3, new Texture("Textures/Plant3.png"));
         textures.Add(TextureName.Crop4, new Texture("Textures/Plant4.png"));
         textures.Add(TextureName.Island, new Texture("Textures/Island.png"));
-        
+        textures.Add(TextureName.ingameBackGround, new Texture("Textures/background.png"));
+
         textures.Add(TextureName.Farmer1Running, new Texture("Textures/farmer01_running.png"));
         textures.Add(TextureName.Farmer1Jumping, new Texture("Textures/farmer01_jumping.png"));
         textures.Add(TextureName.Farmer2Running, new Texture("Textures/farmer02_running.png"));
@@ -43,6 +44,7 @@ public class AssetManager
         Crop3,
         Crop4,
         Island,
+        ingameBackGround,
         
         Farmer1Running,
         Farmer1Jumping,

@@ -11,8 +11,8 @@ namespace GameProject2D
 
         static bool running = true;
 
-        static GameState currentGameState = GameState.InGame;
-        static GameState prevGameState = GameState.InGame;
+        static GameState currentGameState = GameState.MainMenu;
+        static GameState prevGameState = GameState.MainMenu;
         static IGameState state;
 
         public static RenderWindow win;
@@ -22,6 +22,8 @@ namespace GameProject2D
 
         static Music menuMusic = new Music("Sounds/Music/MainMenu.wav");
         static Music inGameMusic = new Music("Sounds/Music/InGame.wav");
+        public static Sound splashSound = new Sound(new SoundBuffer("Sounds/splash.wav"));
+        public static Sound jumpsSound = new Sound(new SoundBuffer("Sounds/jump.wav"));
 
         static void Main(string[] args)
         {
@@ -80,13 +82,15 @@ namespace GameProject2D
                     winnerOneText.DisplayedString = "The Winner is Player One!";
                     winnerOneText.Position = new Vector2(320.0f, 320.0f);
                     winnerOneText.CharacterSize = 20;
+                    winnerOneText.Color = Color.Black;
                     Program.win.Draw(winnerOneText);
                 }
                 else if (!InGameState.winnerOne && currentGameState == GameState.EndScreen)
                 {
                     winnerTwoText.DisplayedString = "The Winner is Player Two!";
                     winnerTwoText.Position = new Vector2(320.0f, 320.0f);
-                    winnerOneText.CharacterSize = 20;
+                    winnerTwoText.CharacterSize = 20;
+                    winnerTwoText.Color = Color.Black;
                     Program.win.Draw(winnerTwoText);
                 }
 
