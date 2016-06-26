@@ -16,7 +16,7 @@ class SweatDrop
     {
         sprite = new Sprite(AssetManager.GetTexture(AssetManager.TextureName.Drop));
         sprite.Origin = (Vector2)sprite.Texture.Size / 2;
-        sprite.Scale = sprite.Scale * 1F;
+        sprite.Scale = sprite.Scale * 0.3F;
         this.circle = new CircleShape(10.0F);
         this.position = spawnPosition;
         this.circle.FillColor = new Color(200, 250, 250);
