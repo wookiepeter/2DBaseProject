@@ -20,6 +20,11 @@ public class AssetManager
         textures.Add(TextureName.MainMenuBackground, new Texture("Textures/MainMenu_Background.jpg"));
         textures.Add(TextureName.EndScreen, new Texture("Textures/EndScreen.jpg"));
         textures.Add(TextureName.Crop, new Texture("Textures/Plant1.png"));
+       textures.Add(TextureName.Crop2, new Texture("Textures/Plant2.png"));
+        textures.Add(TextureName.Crop3, new Texture("Textures/Plant3.png"));
+        textures.Add(TextureName.Crop4, new Texture("Textures/Plant4.png"));
+        textures.Add(TextureName.Island, new Texture("Textures/Island.png"));
+        
         textures.Add(TextureName.Farmer1Running, new Texture("Textures/farmer01_running.png"));
         textures.Add(TextureName.Farmer1Jumping, new Texture("Textures/farmer01_jumping.png"));
         textures.Add(TextureName.Farmer2Running, new Texture("Textures/farmer02_running.png"));
@@ -34,6 +39,11 @@ public class AssetManager
         MainMenuBackground,
         EndScreen,
         Crop,
+        Crop2,
+        Crop3,
+        Crop4,
+        Island,
+        
         Farmer1Running,
         Farmer1Jumping,
         Farmer2Running,

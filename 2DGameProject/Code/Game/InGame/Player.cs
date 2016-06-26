@@ -105,7 +105,7 @@ namespace GameProject2D
 
             if (startJumping)
             {
-                movement = new Vector2(inputMovement.X * speed, -650F);
+                movement = new Vector2(inputMovement.X * speed, -750F);
                 isJumping = true;
             }
             else
