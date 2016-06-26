@@ -10,7 +10,8 @@ public class AnimatedSprite : Sprite
     public int frameCount { get; private set; }
     Vector2i upperLeftCorner;
 
-    float? startSecond;
+    float timer;
+    bool pause;
 
     public AnimatedSprite(Texture spriteSheet, float secondsPerFrame, int frameCount, Vector2i spriteSize)
         : this(spriteSheet, secondsPerFrame, frameCount, spriteSize, new Vector2i(0, 0))
@@ -24,35 +25,36 @@ public class AnimatedSprite : Sprite
         this.frameCount = frameCount;
         this.spriteSize = spriteSize;
         this.upperLeftCorner = upperLeftCorner;
-        startSecond = 0F;
+        RestartAnimation();
     }
 
     /// <summary>start or restart the animation</summary>
-    public void RestartAnimation(GameTime currentTime)
+    public void RestartAnimation()
     {
-        startSecond = (float)currentTime.TotalTime.TotalSeconds;
+        timer = 0F;
+        pause = false;
     }
 
-    /// <summary>start or restart the animation</summary>
-    public void StopAnimation()
+    public void PauseAnimation()
     {
-        startSecond = null;
+        pause = true;
     }
 
-    public Sprite UpdateFrame(GameTime currentTime)
+    public void ResumeAnimation()
     {
-        int currentFrame = 0;
+        pause = false;
+    }
 
-        if (startSecond.HasValue)
+
+    public Sprite UpdateFrame(float deltaTime)
+    {
+        if (!pause)
         {
-            float passedSeconds = 0F;
-            passedSeconds = (float)currentTime.TotalTime.TotalSeconds - startSecond.Value;
-            passedSeconds /= ((float)frameCount * secondsPerFrame);
-            passedSeconds -= (float)Math.Floor(passedSeconds);
-
-            currentFrame = (int)(passedSeconds * frameCount);
+            timer = (timer + deltaTime) % ((float)frameCount * secondsPerFrame);
         }
 
+        int currentFrame = (int)(timer / secondsPerFrame);
+        
         TextureRect = new IntRect(upperLeftCorner.X + (currentFrame * spriteSize.X), upperLeftCorner.Y, spriteSize.X, spriteSize.Y);
         return this;
 
