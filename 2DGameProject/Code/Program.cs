@@ -26,7 +26,7 @@ namespace GameProject2D
         static void Main(string[] args)
         {
             // initialize window and view
-            win = new RenderWindow(new VideoMode((uint)windowSize.X, (uint)windowSize.Y), "ßauer Regen");
+            win = new RenderWindow(new VideoMode((uint)windowSize.X, (uint)windowSize.Y), "Schweißrim");
             view = new View();
             ResetView();
             gui = new GUI(win, view);
@@ -44,9 +44,11 @@ namespace GameProject2D
             // initialize GameTime
             GameTime = new GameTime();
             GameTime.Start();
-
+         
             // debug Text
             Text debugText = new Text("debug Text", new Font("Fonts/calibri.ttf"));
+            Text winnerOneText = new Text("winner One Text", new Font("Fonts/calibri.ttf"));
+            Text winnerTwoText = new Text("winner Two Text", new Font("Fonts/calibri.ttf"));
 
             while (running && win.IsOpen())
             {
@@ -70,8 +72,21 @@ namespace GameProject2D
                 state.DrawGUI(gui, deltaTime);
 
                 // some DebugText
-                debugText.DisplayedString = "fps: " + (1.0F / deltaTime);
-                win.Draw(debugText);
+              // debugText.DisplayedString = "fps: " + (1.0F / deltaTime);
+                //win.Draw(debugText);
+
+                if (InGameState.winnerOne && currentGameState == GameState.EndScreen)
+                {
+                    winnerOneText.DisplayedString = "The Winner is Player One!";
+                    winnerOneText.Position = new Vector2(200.0f, 200.0f);
+                    Program.win.Draw(winnerOneText);
+                }
+                else if (!InGameState.winnerOne && currentGameState == GameState.EndScreen)
+                {
+                    winnerTwoText.DisplayedString = "The Winner is Player Two!";
+                    winnerTwoText.Position = new Vector2(200.0f, 200.0f);
+                    Program.win.Draw(winnerTwoText);
+                }
 
                 //System.Threading.Thread.Sleep((1000 / 60) - (int)(deltaTime / 1000F));
 

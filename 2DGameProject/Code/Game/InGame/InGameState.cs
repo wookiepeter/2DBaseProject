@@ -16,6 +16,7 @@ namespace GameProject2D
         //SweatDrops drops;
         List<SweatDrop> drops;
         float countdown;
+        public static bool winnerOne;
 
 
         public InGameState()
@@ -156,11 +157,13 @@ namespace GameProject2D
 
             if (lifeRight == 0)
             {
+                winnerOne = true;
                 return GameState.EndScreen;
             }
 
             if (lifeLeft == 0)
             {
+                winnerOne = false;
                 return GameState.EndScreen;
             }
 
