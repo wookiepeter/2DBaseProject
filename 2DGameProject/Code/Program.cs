@@ -11,8 +11,8 @@ namespace GameProject2D
 
         static bool running = true;
 
-        static GameState currentGameState = GameState.InGame;
-        static GameState prevGameState = GameState.InGame;
+        static GameState currentGameState = GameState.MainMenu;
+        static GameState prevGameState = GameState.MainMenu;
         static IGameState state;
 
         public static RenderWindow win;
