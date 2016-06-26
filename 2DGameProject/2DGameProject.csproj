@@ -111,6 +111,9 @@
     </Content>
     <Content Include="Sounds\Music\MyFirstSong V2.wav" />
     <Content Include="Sounds\Music\MyFirstSong.wav" />
+    <Content Include="Textures\background.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Textures\EndScreen.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
