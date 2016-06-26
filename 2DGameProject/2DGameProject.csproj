@@ -80,6 +80,7 @@
     <None Include="Fonts\calibri.ttf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="Fonts\MagicCardsNormal.ttf" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="csfml-audio-2.dll">
