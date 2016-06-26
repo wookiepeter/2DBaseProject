@@ -184,7 +184,6 @@ namespace GameProject2D
             {
                 drop.draw(win, view);
             }
-            background.Draw(win, view);
         }
 
         public void DrawGUI(GUI gui, float deltaTime)

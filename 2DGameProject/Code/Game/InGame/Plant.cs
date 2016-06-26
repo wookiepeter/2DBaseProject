@@ -88,7 +88,8 @@ namespace GameProject2D
 
         public void Draw(RenderWindow win, View view)
         {
-            win.Draw(sprite);
+            if(Life > 0)
+                win.Draw(sprite);
             /* foreach (CircleShape t in collider) //t - variable
             {
                win.Draw(t);

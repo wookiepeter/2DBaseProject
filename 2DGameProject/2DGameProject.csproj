@@ -80,7 +80,9 @@
     <None Include="Fonts\calibri.ttf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Fonts\MagicCardsNormal.ttf" />
+    <None Include="Fonts\MagicCardsNormal.ttf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Content Include="csfml-audio-2.dll">
@@ -111,6 +113,9 @@
     <Content Include="Sounds\Music\MyFirstSong V2.wav" />
     <Content Include="Sounds\Music\MyFirstSong.wav" />
     <Content Include="Sounds\splash.wav" />
+    <Content Include="Textures\background.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Textures\EndScreen.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
