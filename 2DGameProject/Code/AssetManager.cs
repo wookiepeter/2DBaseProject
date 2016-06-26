@@ -18,6 +18,7 @@ public class AssetManager
     {
         textures.Add(TextureName.WhitePixel, new Texture("Textures/pixel.png"));
         textures.Add(TextureName.MainMenuBackground, new Texture("Textures/MainMenu_Background.jpg"));
+        textures.Add(TextureName.EndScreen, new Texture("Textures/EndScreen.jpg"));
         textures.Add(TextureName.Crop, new Texture("Textures/Plant1.png"));
 
     }
@@ -26,6 +27,7 @@ public class AssetManager
     {
         WhitePixel,
         MainMenuBackground,
+        EndScreen,
         Crop,
     }
 }
