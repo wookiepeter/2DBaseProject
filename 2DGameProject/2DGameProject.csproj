@@ -109,7 +109,7 @@
     <Content Include="Sounds\Music\MyFirstSong V2.wav" />
     <Content Include="Sounds\Music\MyFirstSong.wav" />
     <Content Include="Textures\EndScreen.jpg">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Textures\farmer_01.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
