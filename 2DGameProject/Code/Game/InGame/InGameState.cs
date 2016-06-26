@@ -102,17 +102,17 @@ namespace GameProject2D
             foreach (SweatDrop drop in drops)
             {
                 drop.Update(deltaTime);
-                if (DoCollide(player.circle, drop.sprite, out collisionPoint))
+                if (DoCollide(player.circle, drop.circle, out collisionPoint))
                 {
                     drop.bounceOff(collisionPoint);
                 }
 
-                if (DoCollide(player2.circle, drop.sprite, out collisionPoint))
+                if (DoCollide(player2.circle, drop.circle, out collisionPoint))
                 {
                     drop.bounceOff(collisionPoint);
                 }
 
-                if (drop.sprite.Position.X < 0 || drop.sprite.Position.X > Program.win.Size.X || drop.sprite.Position.Y > Program.win.Size.Y)
+                if (drop.circle.Position.X < 0 || drop.circle.Position.X > Program.win.Size.X || drop.circle.Position.Y > Program.win.Size.Y)
                 {
                     cachedForDelete.Add(drop);
                 }
@@ -121,7 +121,7 @@ namespace GameProject2D
                 {
                    foreach(CircleShape cs in plants[i].collider)
                     {
-                        if (DoCollide(drop.sprite, cs, out collisionPoint))
+                        if (DoCollide(drop.circle, cs, out collisionPoint))
                         {
 
                             plants[i].getHit();

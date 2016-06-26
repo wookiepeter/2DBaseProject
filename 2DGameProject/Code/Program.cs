@@ -22,7 +22,7 @@ namespace GameProject2D
 
         static Music menuMusic = new Music("Sounds/Music/MainMenu.wav");
         static Music inGameMusic = new Music("Sounds/Music/InGame.wav");
-        public static Sound splashSound = new Sound(new SoundBuffer("Sounds/splash.wav"));
+     public static Sound splashSound = new Sound(new SoundBuffer("Sounds/splash.wav"));
         public static Sound jumpsSound = new Sound(new SoundBuffer("Sounds/jump.wav"));
 
         static void Main(string[] args)

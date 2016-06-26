@@ -25,12 +25,10 @@ namespace GameProject2D
 
         public Player(Vector2f position, int index) //Konstruktor
         {
-            Vector2 FrameSize = new Vector2(124, 125);
-            sprite = new AnimatedSprite(AssetManager.GetTexture(AssetManager.TextureName.Farmer1Running),0.01F,64, FrameSize);
-            sprite.Origin = FrameSize * 0.5F;
             this.circle = new CircleShape(40.0F);
-            if (index == 2) { 
-            this.circle.FillColor = new Color(150, 0, 2);
+            if (index == 2)
+            {
+                this.circle.FillColor = new Color(150, 0, 2);
             }
             else
             {
@@ -39,9 +37,49 @@ namespace GameProject2D
 
             this.position = position;
             this.movement = new Vector2f(0F, 0F);
-            this.index = index; 
-            
+            this.index = index;
+
+            ChangeSprite(Animation.running);
             //this.size = new Vector2f(50F, 50F);
+        }
+
+        enum Animation
+        {
+            jumping,
+            running
+        }
+
+        private void ChangeSprite(Animation animation)
+        {
+            Vector2 FrameSize;
+
+            switch (animation)
+            {
+                case Animation.running:
+                    FrameSize = new Vector2(124, 125);
+                    if (index == 1)
+                        sprite = new AnimatedSprite(AssetManager.GetTexture(AssetManager.TextureName.Farmer1Running), 0.01F, 64, FrameSize);
+                    else
+                    {
+                        sprite = new AnimatedSprite(AssetManager.GetTexture(AssetManager.TextureName.Farmer2Running), 0.01F, 63, FrameSize);
+                        sprite.Scale = new Vector2(-1, 1);
+                    }
+                    sprite.Origin = FrameSize * 0.5F;
+                    break;
+
+                case Animation.jumping:
+                    FrameSize = new Vector2(131, 125);
+                    if (index == 1)
+                        sprite = new AnimatedSprite(AssetManager.GetTexture(AssetManager.TextureName.Farmer1Jumping), 0.005F, 64, FrameSize);
+                    else
+                    {
+                        sprite = new AnimatedSprite(AssetManager.GetTexture(AssetManager.TextureName.Farmer2Jumping), 0.01F, 64, FrameSize);
+                        sprite.Scale = new Vector2(-1, 1);
+                    }
+                    sprite.Origin = FrameSize * 0.5F;
+                    break;
+
+            }
         }
 
         public void update(float deltaTime)
@@ -62,6 +100,10 @@ namespace GameProject2D
                     inputMovement.X = GamePadInputManager.GetLeftStick(1).X;
                     if ((circle.Position.Y + circle.Radius * 2) > Program.win.Size.Y * 0.7F - 1)
                     {
+                        if (isJumping)
+                        {
+                            ChangeSprite(Animation.running);
+                        }
                         isJumping = false;
                     }
                     startJumping = !isJumping && GamePadInputManager.IsPressed(GamePadButton.A, 1);
@@ -74,6 +116,10 @@ namespace GameProject2D
 
                     if ((circle.Position.Y + circle.Radius * 2) > Program.win.Size.Y * 0.7F - 1)
                     {
+                        if (isJumping)
+                        {
+                            ChangeSprite(Animation.running);
+                        }
                         isJumping = false;
                     }
                     startJumping = !isJumping && KeyboardInputManager.IsPressed(Keyboard.Key.Up);
@@ -87,6 +133,10 @@ namespace GameProject2D
                     inputMovement.X = GamePadInputManager.GetLeftStick(0).X;
                     if ((circle.Position.Y + circle.Radius * 2) > Program.win.Size.Y * 0.7F - 1)
                     {
+                        if (isJumping)
+                        {
+                            ChangeSprite(Animation.running);
+                        }
                         isJumping = false;
                     }
                     startJumping = !isJumping && GamePadInputManager.IsPressed(GamePadButton.A, 0);
@@ -99,6 +149,10 @@ namespace GameProject2D
 
                     if ((circle.Position.Y + circle.Radius * 2) > Program.win.Size.Y * 0.7F - 1)
                     {
+                        if (isJumping)
+                        {
+                            ChangeSprite(Animation.running);
+                        }
                         isJumping = false;
                     }
                     startJumping = !isJumping && KeyboardInputManager.IsPressed(Keyboard.Key.W);
@@ -107,6 +161,8 @@ namespace GameProject2D
 
             if (startJumping)
             {
+                ChangeSprite(Animation.jumping);
+                Program.jumpsSound.Play();
                 movement = new Vector2(inputMovement.X * speed, -750F); //Springhoehe
                 isJumping = true;
             }
