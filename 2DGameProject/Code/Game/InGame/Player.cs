@@ -11,8 +11,9 @@ namespace GameProject2D
 {
     public class Player
     {
-        public CircleShape sprite;
-        Vector2f position { get { return sprite.Position; } set { sprite.Position = value; } }
+        public CircleShape circle;
+        AnimatedSprite sprite;
+        Vector2f position { get { return circle.Position; } set { circle.Position = value; } }
         Vector2f movement { get; set; }
         //Vector2f size { get { return sprite.Size; } set { sprite.Size = value; } }
 
@@ -24,13 +25,14 @@ namespace GameProject2D
 
         public Player(Vector2f position, int index) //Konstruktor
         {
-            this.sprite = new CircleShape(40.0F);
+            sprite = new AnimatedSprite(AssetManager.GetTexture(AssetManager.TextureName.Farmer1Running),0.1f,62, new Vector2 (131,125));
+            this.circle = new CircleShape(40.0F);
             if (index == 2) { 
-            this.sprite.FillColor = new Color(150, 0, 2);
+            this.circle.FillColor = new Color(150, 0, 2);
             }
             else
             {
-                this.sprite.FillColor = new Color(0, 50, 255);
+                this.circle.FillColor = new Color(0, 50, 255);
             }
 
             this.position = position;
@@ -56,7 +58,7 @@ namespace GameProject2D
                 if (GamePadInputManager.IsConnected(1))
                 {
                     inputMovement.X = GamePadInputManager.GetLeftStick(1).X;
-                    if ((sprite.Position.Y + sprite.Radius * 2) > Program.win.Size.Y * 0.7F - 1)
+                    if ((circle.Position.Y + circle.Radius * 2) > Program.win.Size.Y * 0.7F - 1)
                     {
                         isJumping = false;
                     }
@@ -68,7 +70,7 @@ namespace GameProject2D
                     inputMovement.X += Keyboard.IsKeyPressed(Keyboard.Key.Left) ? -1 : 0F;
                     inputMovement.X += Keyboard.IsKeyPressed(Keyboard.Key.Right) ? 1 : 0F;
 
-                    if ((sprite.Position.Y + sprite.Radius * 2) > Program.win.Size.Y * 0.7F - 1)
+                    if ((circle.Position.Y + circle.Radius * 2) > Program.win.Size.Y * 0.7F - 1)
                     {
                         isJumping = false;
                     }
@@ -81,7 +83,7 @@ namespace GameProject2D
                 if (GamePadInputManager.IsConnected(0))
                 {
                     inputMovement.X = GamePadInputManager.GetLeftStick(0).X;
-                    if ((sprite.Position.Y + sprite.Radius * 2) > Program.win.Size.Y * 0.7F - 1)
+                    if ((circle.Position.Y + circle.Radius * 2) > Program.win.Size.Y * 0.7F - 1)
                     {
                         isJumping = false;
                     }
@@ -93,7 +95,7 @@ namespace GameProject2D
                     inputMovement.X += Keyboard.IsKeyPressed(Keyboard.Key.A) ? -1 : 0F;
                     inputMovement.X += Keyboard.IsKeyPressed(Keyboard.Key.D) ? 1 : 0F;
 
-                    if ((sprite.Position.Y + sprite.Radius * 2) > Program.win.Size.Y * 0.7F - 1)
+                    if ((circle.Position.Y + circle.Radius * 2) > Program.win.Size.Y * 0.7F - 1)
                     {
                         isJumping = false;
                     }
@@ -121,35 +123,35 @@ namespace GameProject2D
                // movement *= Vector2.Up;
             }            
 
-             if (position.Y > Program.win.Size.Y*0.7F - sprite.Radius*2)
+             if (position.Y > Program.win.Size.Y*0.7F - circle.Radius*2)
             {
-                position = new Vector2f (position.X, Program.win.Size.Y*0.7F - sprite.Radius*2);
+                position = new Vector2f (position.X, Program.win.Size.Y*0.7F - circle.Radius*2);
                 //movement *= Vector2.Up;
             }
 
             if (index == 1)
             {
-                if (position.X > (Program.win.Size.X *0.43F) - sprite.Radius*1.7F)
+                if (position.X > (Program.win.Size.X *0.43F) - circle.Radius*1.7F)
                 {
-                    position = new Vector2f((Program.win.Size.X *0.43F) - sprite.Radius*1.7F, position.Y);
+                    position = new Vector2f((Program.win.Size.X *0.43F) - circle.Radius*1.7F, position.Y);
                     //movement *= Vector2.Left;
                 }
-                if (position.X < Program.win.Size.X * 0.03F - sprite.Radius/3)
+                if (position.X < Program.win.Size.X * 0.03F - circle.Radius/3)
                 {
-                    position = new Vector2f(Program.win.Size.X * 0.03F - sprite.Radius/3, position.Y);
+                    position = new Vector2f(Program.win.Size.X * 0.03F - circle.Radius/3, position.Y);
                     //movement *= Vector2.Left;
                 }
             }
             if (index == 2)
             {
-                if (position.X < ((1F - 0.43F) * Program.win.Size.X)  - sprite.Radius/2.5F)
+                if (position.X < ((1F - 0.43F) * Program.win.Size.X)  - circle.Radius/2.5F)
                 {
-                    position = new Vector2f(((1F - 0.43F) * Program.win.Size.X) - sprite.Radius/2.5F, position.Y);
+                    position = new Vector2f(((1F - 0.43F) * Program.win.Size.X) - circle.Radius/2.5F, position.Y);
                     //movement *= Vector2.Left;
                 }
-                if (position.X > (1F-0.03F)*Program.win.Size.X - sprite.Radius*1.7F)
+                if (position.X > (1F-0.03F)*Program.win.Size.X - circle.Radius*1.7F)
                 {
-                    position = new Vector2f((1F - 0.03F)*Program.win.Size.X - sprite.Radius*1.7F, position.Y);
+                    position = new Vector2f((1F - 0.03F)*Program.win.Size.X - circle.Radius*1.7F, position.Y);
                     //movement *= Vector2.Left;
                 }
             }

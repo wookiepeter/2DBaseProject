@@ -20,6 +20,11 @@ public class AssetManager
         textures.Add(TextureName.MainMenuBackground, new Texture("Textures/MainMenu_Background.jpg"));
         textures.Add(TextureName.EndScreen, new Texture("Textures/EndScreen.jpg"));
         textures.Add(TextureName.Crop, new Texture("Textures/Plant1.png"));
+        textures.Add(TextureName.Farmer1Running, new Texture("Textures/farmer01_running.png"));
+        textures.Add(TextureName.Farmer1Jumping, new Texture("Textures/farmer01_jumping.png"));
+        textures.Add(TextureName.Farmer2Running, new Texture("Textures/farmer02_running.png"));
+        textures.Add(TextureName.Farmer2Jumping, new Texture("Textures/farmer02_jumping.png"));
+
 
     }
 
@@ -29,5 +34,9 @@ public class AssetManager
         MainMenuBackground,
         EndScreen,
         Crop,
+        Farmer1Running,
+        Farmer1Jumping,
+        Farmer2Running,
+        Farmer2Jumping,
     }
 }

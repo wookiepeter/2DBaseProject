@@ -102,12 +102,12 @@ namespace GameProject2D
             foreach (SweatDrop drop in drops)
             {
                 drop.Update(deltaTime);
-                if (DoCollide(player.sprite, drop.sprite, out collisionPoint))
+                if (DoCollide(player.circle, drop.sprite, out collisionPoint))
                 {
                     drop.bounceOff(collisionPoint);
                 }
 
-                if (DoCollide(player2.sprite, drop.sprite, out collisionPoint))
+                if (DoCollide(player2.circle, drop.sprite, out collisionPoint))
                 {
                     drop.bounceOff(collisionPoint);
                 }
