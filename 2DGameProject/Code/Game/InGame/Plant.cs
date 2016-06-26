@@ -21,10 +21,10 @@ namespace GameProject2D
         public Plant(float x)
         {
             variable = x;
-            AssetManager.GetTexture(AssetManager.TextureName.Crop); //greift auf die Texture zu
-            sprite = new Sprite(AssetManager.GetTexture(AssetManager.TextureName.Crop));
+            AssetManager.GetTexture(AssetManager.TextureName.Crop4); //greift auf die Texture zu
+            sprite = new Sprite(AssetManager.GetTexture(AssetManager.TextureName.Crop4));
             this.sprite.Position = new Vector2f(x, (Program.win.Size.Y * 0.7F)- SpriteHeigh);
-            sprite.Scale = new Vector2f(0.6F, 1F);
+            sprite.Scale = new Vector2f(0.8F, 1F);
             this.Life = 4;
             for (int i = 0; i < Life; i++)
             {
