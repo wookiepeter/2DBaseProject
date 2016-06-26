@@ -101,6 +101,7 @@
     <Content Include="sfmlnet-audio-2.dll" />
     <Content Include="sfmlnet-graphics-2.dll" />
     <Content Include="sfmlnet-window-2.dll" />
+    <Content Include="Sounds\jump.wav" />
     <Content Include="Sounds\Music\InGame.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -109,6 +110,7 @@
     </Content>
     <Content Include="Sounds\Music\MyFirstSong V2.wav" />
     <Content Include="Sounds\Music\MyFirstSong.wav" />
+    <Content Include="Sounds\splash.wav" />
     <Content Include="Textures\EndScreen.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

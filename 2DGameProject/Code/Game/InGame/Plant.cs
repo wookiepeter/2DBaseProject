@@ -55,6 +55,8 @@ namespace GameProject2D
             Life -= 1;
             cachedForDelete.Add(collider[collider.Count - 1]);
 
+            Program.splashSound.Play();
+
             ChangeTexture();
         }
 

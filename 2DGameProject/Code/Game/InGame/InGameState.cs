@@ -123,6 +123,7 @@ namespace GameProject2D
                     {
                         if (DoCollide(drop.sprite, cs, out collisionPoint))
                         {
+
                             plants[i].getHit();
                             cachedForDelete.Add(drop);
                         }
