@@ -18,6 +18,12 @@ namespace GameProject2D
         float countdown;
         public static bool winnerOne;
 
+        Sprite LifeSprite;
+        readonly int PlantsPerPlayer = 5;
+        int lifeLeft = 5;
+        int lifeRight = 5;
+
+        int GameOverLife = 2;
 
         public InGameState()
         {
@@ -27,11 +33,10 @@ namespace GameProject2D
 
             Plant randomPlant = new Plant(-100);
             plants = new List<Plant>();
-
-            int plantCount = 5;
+            
             List<float> left = new List<float>();
             List<float> right = new List<float>();
-            for (int i = 0; i < plantCount; i++)
+            for (int i = 0; i < PlantsPerPlayer; i++)
             {
                 bool canPlace = true;
                 float place = (Rand.Value(Program.win.Size.X * 0.03F, Program.win.Size.X * 0.43F - randomPlant.SpriteWidth));
@@ -51,7 +56,7 @@ namespace GameProject2D
                 else i--;
             }
 
-            for (int j = 0; j < plantCount; j++)
+            for (int j = 0; j < PlantsPerPlayer; j++)
             {
                 bool canPlace = true;
                 float place = Rand.Value((1F - 0.43F) * Program.win.Size.X, Program.win.Size.X * (1F - 0.03F) - randomPlant.SpriteWidth);
@@ -80,8 +85,9 @@ namespace GameProject2D
             plants.Add(new Plant(700F));*/
 
             drops = new List<SweatDrop>();
-            
 
+            LifeSprite = new Sprite(AssetManager.GetTexture(AssetManager.TextureName.Blossom));
+            LifeSprite.Origin = 0.5F * (Vector2)LifeSprite.Texture.Size;
         }
 
         public GameState Update(float deltaTime)
@@ -141,28 +147,28 @@ namespace GameProject2D
                 plant.update(deltaTime);
             }
 
-            int lifeLeft = 0;
-            int lifeRight = 0;
+            lifeLeft = 0;
+            lifeRight = 0;
 
             for (int i = 0; i < plants.Count; i++)
             {
                 if(plants[i].variable < Program.win.Size.X * 0.5f)
                 {
-                    lifeLeft += plants[i].Life;
+                    lifeLeft += (int)Helper.Clamp(plants[i].Life, 0, 1);
                 }
                 else
                 {
-                    lifeRight += plants[i].Life;
+                    lifeRight += (int)Helper.Clamp(plants[i].Life, 0, 1);
                 }
             }
 
-            if (lifeRight == 0)
+            if (lifeRight <= GameOverLife)
             {
                 winnerOne = true;
                 return GameState.EndScreen;
             }
 
-            if (lifeLeft == 0)
+            if (lifeLeft <= GameOverLife)
             {
                 winnerOne = false;
                 return GameState.EndScreen;
@@ -184,10 +190,28 @@ namespace GameProject2D
             {
                 drop.draw(win, view);
             }
+
+            LifeSprite.Rotation += deltaTime * 16;
+            for (int i = 0; i < lifeLeft; i++)
+            {
+                LifeSprite.Color = i < GameOverLife ? Color.Black : Color.White;
+
+                LifeSprite.Position = new Vector2(win.Size.X * 0.05F + win.Size.X * 0.05F * i, win.Size.Y * 0.1F);
+                win.Draw(LifeSprite);
+            }
+            LifeSprite.Rotation = -LifeSprite.Rotation;
+            for (int i = 0; i < lifeRight; i++)
+            {
+                LifeSprite.Color = i < GameOverLife ? Color.Black : Color.White;
+                LifeSprite.Position = new Vector2(win.Size.X * (1F - 0.05F) - win.Size.X * 0.05F * i, win.Size.Y * 0.1F);
+                win.Draw(LifeSprite);
+            }
+            LifeSprite.Rotation = -LifeSprite.Rotation;
         }
 
         public void DrawGUI(GUI gui, float deltaTime)
         {
+
         }
         private bool DoCollide(CircleShape a, CircleShape b, out Vector2 collisionPoint)
         {

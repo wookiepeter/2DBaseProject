@@ -49,8 +49,6 @@ namespace GameProject2D
          
             // debug Text
             Text debugText = new Text("debug Text", new Font("Fonts/calibri.ttf"));
-            Text winnerOneText = new Text("winner One Text", new Font("Fonts/ARJULIAN.ttf"));
-            Text winnerTwoText = new Text("winner Two Text", new Font("Fonts/ARJULIAN.ttf"));
 
             while (running && win.IsOpen())
             {
@@ -76,23 +74,6 @@ namespace GameProject2D
                 // some DebugText
               // debugText.DisplayedString = "fps: " + (1.0F / deltaTime);
                 //win.Draw(debugText);
-
-                if (InGameState.winnerOne && currentGameState == GameState.EndScreen)
-                {
-                    winnerOneText.DisplayedString = "The Winner is Player One!";
-                    winnerOneText.Position = new Vector2(270.0f, 320.0f);
-                    winnerOneText.CharacterSize = 40;
-                    winnerOneText.Color = Color.Black;
-                    Program.win.Draw(winnerOneText);
-                }
-                else if (!InGameState.winnerOne && currentGameState == GameState.EndScreen)
-                {
-                    winnerTwoText.DisplayedString = "The Winner is Player Two!";
-                    winnerTwoText.Position = new Vector2(270.0f, 320.0f);
-                    winnerTwoText.CharacterSize = 40;
-                    winnerTwoText.Color = Color.Black;
-                    Program.win.Draw(winnerTwoText);
-                }
 
                 //System.Threading.Thread.Sleep((1000 / 60) - (int)(deltaTime / 1000F));
 

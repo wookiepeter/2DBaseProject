@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using SFML.Graphics;
+using GameProject2D;
+
 class SweatDrop
 {
     public CircleShape circle;
@@ -26,6 +28,10 @@ class SweatDrop
     {
         move += (gravity * deltaTime) / 2;
         position += move;
+        float sideBuffer = 10;
+        //position = new Vector2((position.X + Program.win.Size.X + 2 * sideBuffer) % (Program.win.Size.X + 2 * sideBuffer) + sideBuffer, position.Y);
+
+        position = new Vector2((position.X + Program.win.Size.X) % (Program.win.Size.X), position.Y);
 
     }
 
