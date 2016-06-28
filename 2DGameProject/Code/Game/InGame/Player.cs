@@ -58,22 +58,22 @@ namespace GameProject2D
                 case Animation.running:
                     FrameSize = new Vector2(124, 125);
                     if (index == 1)
-                        sprite = new AnimatedSprite(AssetManager.GetTexture(AssetManager.TextureName.Farmer1Running), 0.01F, 64, FrameSize);
+                        sprite = new AnimatedSprite(AssetManager.GetTexture(AssetManager.TextureName.Farmer1Running), 0.02F, 32, FrameSize);
                     else
                     {
-                        sprite = new AnimatedSprite(AssetManager.GetTexture(AssetManager.TextureName.Farmer2Running), 0.01F, 63, FrameSize);
+                        sprite = new AnimatedSprite(AssetManager.GetTexture(AssetManager.TextureName.Farmer2Running), 0.02F, 32, FrameSize);
                         sprite.Scale = new Vector2(-1, 1);
                     }
                     sprite.Origin = FrameSize * 0.5F;
                     break;
 
                 case Animation.jumping:
-                    FrameSize = new Vector2(131, 125);
+                    FrameSize = new Vector2(130, 125);
                     if (index == 1)
-                        sprite = new AnimatedSprite(AssetManager.GetTexture(AssetManager.TextureName.Farmer1Jumping), 0.005F, 64, FrameSize);
+                        sprite = new AnimatedSprite(AssetManager.GetTexture(AssetManager.TextureName.Farmer1Jumping), 0.03F, 32, FrameSize);
                     else
                     {
-                        sprite = new AnimatedSprite(AssetManager.GetTexture(AssetManager.TextureName.Farmer2Jumping), 0.01F, 64, FrameSize);
+                        sprite = new AnimatedSprite(AssetManager.GetTexture(AssetManager.TextureName.Farmer2Jumping), 0.03F, 32, FrameSize);
                         sprite.Scale = new Vector2(-1, 1);
                     }
                     sprite.Origin = FrameSize * 0.5F;
