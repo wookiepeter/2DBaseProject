@@ -191,18 +191,19 @@ namespace GameProject2D
                 drop.draw(win, view);
             }
 
+            Console.WriteLine(lifeLeft);
             LifeSprite.Rotation += deltaTime * 16;
-            for (int i = 0; i < lifeLeft; i++)
+            for (int i = 0; i < PlantsPerPlayer - GameOverLife; i++)
             {
-                LifeSprite.Color = i < GameOverLife ? Color.Black : Color.White;
+                LifeSprite.Color = i < lifeLeft - GameOverLife ? Color.White : Color.Black;
 
                 LifeSprite.Position = new Vector2(win.Size.X * 0.05F + win.Size.X * 0.05F * i, win.Size.Y * 0.1F);
                 win.Draw(LifeSprite);
             }
             LifeSprite.Rotation = -LifeSprite.Rotation;
-            for (int i = 0; i < lifeRight; i++)
+            for (int i = 0; i < PlantsPerPlayer - GameOverLife; i++)
             {
-                LifeSprite.Color = i < GameOverLife ? Color.Black : Color.White;
+                LifeSprite.Color = i < lifeRight - GameOverLife ? Color.White : Color.Black;
                 LifeSprite.Position = new Vector2(win.Size.X * (1F - 0.05F) - win.Size.X * 0.05F * i, win.Size.Y * 0.1F);
                 win.Draw(LifeSprite);
             }
