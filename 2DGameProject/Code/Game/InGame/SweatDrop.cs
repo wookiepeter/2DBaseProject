@@ -27,7 +27,7 @@ class SweatDrop
 
     public void Update(float deltaTime)
     {
-        move += (gravity * deltaTime) / 2;
+        move += (gravity * deltaTime) /2;
         position += move;
         //position = new Vector2((position.X + Program.win.Size.X) % (Program.win.Size.X), position.Y);
 
@@ -48,7 +48,21 @@ class SweatDrop
     public void draw(RenderWindow win, View view)
     {
         sprite.Position = position + Vector2.One * circle.Radius;
+        Vector2 realPositoin = sprite.Position;
         win.Draw(sprite);
+        
+        if(sprite.Position.X < 0)
+        {
+            sprite.Position = new Vector2(Program.win.Size.X + (-sprite.Position.X), sprite.Position.Y);
+        }
+        if(sprite.Position.X > Program.win.Size.X)
+        {
+            sprite.Position = new Vector2(-(sprite.Position.X-Program.win.Size.X), sprite.Position.Y);
+        }
+
+        win.Draw(sprite);
+
+        sprite.Position = realPositoin;
 
         // win.Draw(circle);
     }
