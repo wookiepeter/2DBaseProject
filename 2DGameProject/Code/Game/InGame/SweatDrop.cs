@@ -17,11 +17,12 @@ class SweatDrop
     public SweatDrop(Vector2 spawnPosition)
     {
         sprite = new Sprite(AssetManager.GetTexture(AssetManager.TextureName.Drop));
-        sprite.Origin = (Vector2)sprite.Texture.Size / 2;
+        sprite.Origin = new Vector2(sprite.Texture.Size.X / 2-5, sprite.Texture.Size.Y / 2);
         sprite.Scale = sprite.Scale * 0.3F;
         this.circle = new CircleShape(10.0F);
         this.position = spawnPosition;
-        this.circle.FillColor = new Color(200, 250, 250);
+        this.circle.FillColor = new Color(250, 0, 0);
+
     }
 
     public void Update(float deltaTime)
@@ -29,6 +30,8 @@ class SweatDrop
         move += (gravity * deltaTime) / 2;
         position += move;
         //position = new Vector2((position.X + Program.win.Size.X) % (Program.win.Size.X), position.Y);
+
+        sprite.Rotation = Helper.RadianToDegree*(float)Math.Atan2(-move.X, move.Y);
 
         float sideBuffer = 0;
         float actualFieldSize = Program.win.Size.X + 2 * sideBuffer;
@@ -45,6 +48,7 @@ class SweatDrop
     {
         sprite.Position = position + Vector2.One * circle.Radius;
         win.Draw(sprite);
+
         win.Draw(circle);
     }
 }
