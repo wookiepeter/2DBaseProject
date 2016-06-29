@@ -42,6 +42,7 @@ class SweatDrop
     public void bounceOff(Vector2 collisionPoint)
     {
         move = (position + circle.Radius * Vector2.One - collisionPoint).normalized;
+        position += move;
     }
 
     public void draw(RenderWindow win, View view)
@@ -49,7 +50,7 @@ class SweatDrop
         sprite.Position = position + Vector2.One * circle.Radius;
         win.Draw(sprite);
 
-        win.Draw(circle);
+        // win.Draw(circle);
     }
 }
 
