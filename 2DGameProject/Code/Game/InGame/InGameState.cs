@@ -190,8 +190,7 @@ namespace GameProject2D
             {
                 drop.draw(win, view);
             }
-
-            Console.WriteLine(lifeLeft);
+            
             LifeSprite.Rotation += deltaTime * 16;
             for (int i = 0; i < PlantsPerPlayer - GameOverLife; i++)
             {
