@@ -99,7 +99,7 @@ namespace GameProject2D
             if (countdown <= 0)
             {
                 countdown = 1.0f;
-                drops.Add(new SweatDrop(new Vector2(Rand.Value(1.0F, Program.win.Size.X-1.0F), -100.0F)));
+                drops.Add(new SweatDrop(new Vector2(Rand.Value(1.0F, Program.win.Size.X), -100.0F)));
 
             }
             countdown -= deltaTime;
